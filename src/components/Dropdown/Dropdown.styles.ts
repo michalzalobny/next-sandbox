@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { underline } from 'utils/sharedStyled';
+import { squareButton } from 'utils/sharedStyled';
 import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled.div`
@@ -16,10 +16,8 @@ export const ButtonWrapper = styled.div`
 
 export const DropButton = styled.span`
   display: inline-block;
-  position: relative;
-  font-size: 14px;
-  ${underline};
   cursor: pointer;
+  ${squareButton};
 `;
 
 export const Content = styled.div`

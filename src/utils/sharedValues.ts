@@ -6,5 +6,6 @@ export const sharedValues = {
     lightGray: '#f5f5f5',
     lightPurple: '#F0F0FF',
     purple: '#755DB5',
+    blue: '#3087ff',
   },
 };
