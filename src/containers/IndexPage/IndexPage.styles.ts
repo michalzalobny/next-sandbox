@@ -20,7 +20,7 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-  font-size: 15px;
+  font-size: 14px;
   color: ${sharedValues.colors.purple};
   padding: 15px;
   background-color: ${sharedValues.colors.lightPurple};
