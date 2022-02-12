@@ -11,7 +11,9 @@ export default function IndexPage() {
       <Head />
       <S.Wrapper>
         <S.Header>
-          <S.Title>NextJS Sandbox</S.Title>
+          <S.Title>
+            NextJS <span>Sandbox</span>
+          </S.Title>
           <S.AuthorWrapper>
             <LinkHandler isExternal elHref="https://github.com/javusScriptus">
               <S.GithubLink>javusScriptus</S.GithubLink>
