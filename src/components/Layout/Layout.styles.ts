@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { underline } from 'utils/sharedStyled';
+
 interface ReadyWrapperProps {
   isReady: boolean;
 }
@@ -22,4 +24,17 @@ export const ReadyWrapper = styled.div<ReadyWrapperProps>`
       user-select: none;
       pointer-events: none;
     `}
+`;
+
+export const GithubWrapper = styled.div`
+  position: fixed;
+  z-index: 20;
+  top: 20px;
+  right: 30px;
+`;
+
+export const GithubLink = styled.a`
+  position: relative;
+  font-size: 14px;
+  ${underline};
 `;

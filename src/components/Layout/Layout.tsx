@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { LinkHandler } from 'components/LinkHandler/LinkHandler';
+
 import * as S from './Layout.styles';
 
 interface Props {
@@ -23,6 +25,11 @@ export const Layout = (props: Props) => {
   return (
     <>
       <S.ReadyWrapper isReady={isReady}></S.ReadyWrapper>
+      <S.GithubWrapper>
+        <LinkHandler isExternal elHref="https://github.com/javusScriptus/next-sandbox">
+          <S.GithubLink>GitHub repo</S.GithubLink>
+        </LinkHandler>
+      </S.GithubWrapper>
       {children}
     </>
   );
