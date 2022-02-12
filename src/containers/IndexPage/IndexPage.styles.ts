@@ -13,15 +13,18 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 4rem;
+  font-size: 4.5rem;
   color: ${sharedValues.colors.trueBlack};
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  margin-bottom: 25px;
 `;
 
 export const Description = styled.p`
-  font-size: 1.6rem;
+  font-size: 15px;
   color: ${sharedValues.colors.trueBlack};
+  padding: 1.5rem;
+  background-color: ${sharedValues.colors.lightGray};
+  border-radius: 8px;
 `;
 
 export const Header = styled.header`
