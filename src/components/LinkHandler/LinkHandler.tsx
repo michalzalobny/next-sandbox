@@ -18,13 +18,13 @@ export const LinkHandler = (props: Props) => {
           {children}
         </a>
       ) : onClickFn ? (
-        <button style={{ width: '100%', display: 'flex' }} onClick={() => onClickFn()}>
+        <button style={{ display: 'flex' }} onClick={() => onClickFn()}>
           {children}
         </button>
       ) : (
         elHref && (
           <Link href={elHref} passHref>
-            <a style={{ width: '100%', display: 'flex' }}>{children}</a>
+            <a style={{ display: 'flex' }}>{children}</a>
           </Link>
         )
       )}

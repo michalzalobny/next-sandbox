@@ -8,6 +8,7 @@ type ElRef = React.RefObject<HTMLDivElement>;
 interface Size {
   clientRect: DomRectSSR;
   offsetTop: number;
+  offsetLeft: number;
   isReady: boolean;
 }
 
@@ -24,7 +25,8 @@ const EmptySSRRect: DomRectSSR = {
 
 const emptySize: Size = {
   clientRect: EmptySSRRect,
-  offsetTop: 0,
+  offsetTop: 1,
+  offsetLeft: 1,
   isReady: false,
 };
 
@@ -32,15 +34,14 @@ export const useElementSize = (elRef: ElRef) => {
   const [size, setSize] = useState<Size>(emptySize);
 
   const onResize = useCallback(() => {
-    if (!elRef.current) {
-      return () => {};
-    }
+    if (!elRef.current) return;
     const rect = elRef.current.getBoundingClientRect();
 
     return setSize({
       clientRect: rect,
       isReady: true,
-      offsetTop: elRef.current.offsetTop,
+      offsetTop: elRef.current.offsetTop, //Retruns offset to relative element (not to the whole page)
+      offsetLeft: elRef.current.offsetLeft,
     });
   }, [elRef]);
 

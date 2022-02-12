@@ -14,6 +14,7 @@ export const Title = styled.h1`
 
 export const Description = styled.p`
   font-size: 14px;
+  line-height: 1.5;
   color: ${sharedValues.colors.purple};
   padding: 15px;
   background-color: ${sharedValues.colors.lightPurple};
