@@ -21,8 +21,9 @@ export const MainHeader = () => {
           </LinkHandler>
         </S.AuthorWrapper>
         <S.Description>
-          NextJS Sandbox is a place with all custom components made in ReactJS and Framer Motion,
-          that I use and maintain on regular basis.
+          All custom components I have made and constantly trying to improve 🚀. I use them mostly
+          in my React application, but all of them might be easily transfered and used with pure css
+          and js.
         </S.Description>
       </S.Header>
     </>

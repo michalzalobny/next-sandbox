@@ -13,7 +13,7 @@ export const Head = (props: HeadProps) => {
   const {
     ogImage = 'https://res.cloudinary.com/dpv0ukspz/image/upload/v1644688438/og-100_tt2vpp.jpg',
     title = 'NextJS Sandbox',
-    description = 'NextJS Sandbox is a place with all custom components made in ReactJS and Framer Motion, that I use and maintain on regular basis.',
+    description = 'All custom components I have made and constantly trying to improve 🚀. I use them mostly in my React application, but all of them might be easily transfered and used with pure css and js.',
   } = props;
 
   return (
