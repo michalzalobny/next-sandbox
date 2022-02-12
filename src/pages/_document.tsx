@@ -2,6 +2,8 @@ import NextDocument, { Head, Main, NextScript, DocumentContext, Html } from 'nex
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
+import { VARIABLES, setCssVariables } from 'utils/functions/setCssVariables';
+
 export default class Document extends NextDocument {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -49,6 +51,12 @@ export default class Document extends NextDocument {
           />
 
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(${setCssVariables.toString()})({variables:${JSON.stringify(VARIABLES)}})`,
+            }}
+          />
         </Head>
         <body>
           <Main />
