@@ -21,10 +21,11 @@ export const Title = styled.h1`
 
 export const Description = styled.p`
   font-size: 15px;
-  color: ${sharedValues.colors.trueBlack};
+  color: ${sharedValues.colors.purple};
   padding: 15px;
-  background-color: ${sharedValues.colors.lightGray};
+  background-color: ${sharedValues.colors.lightPurple};
   border-radius: 8px;
+  display: inline-block;
 `;
 
 export const Header = styled.header`
