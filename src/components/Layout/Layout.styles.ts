@@ -43,13 +43,15 @@ export const AuthorWrapper = styled.div`
   font-size: 14px;
 `;
 
-export const GithubLink = styled.a`
+export const GithubLink = styled.span`
+  display: inline-block;
   position: relative;
   font-size: 14px;
   ${underline};
 `;
 
-export const AuthorLink = styled.a`
+export const AuthorLink = styled.span`
+  display: inline-block;
   font-weight: 800;
   position: relative;
   ${underline};
