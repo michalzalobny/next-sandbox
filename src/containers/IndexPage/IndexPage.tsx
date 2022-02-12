@@ -14,7 +14,6 @@ export default function IndexPage() {
   return (
     <>
       <Head />
-
       <S.Wrapper onClick={() => setIsBlue(prev => !prev)} isBlue={isBlue}>
         <S.MainWrapper>Main</S.MainWrapper>
         <S.Title>The title</S.Title>
