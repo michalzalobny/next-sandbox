@@ -33,8 +33,25 @@ export const GithubWrapper = styled.div`
   right: 30px;
 `;
 
+export const AuthorWrapper = styled.div`
+  position: fixed;
+  z-index: 20;
+  bottom: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+`;
+
 export const GithubLink = styled.a`
   position: relative;
   font-size: 14px;
   ${underline};
+`;
+
+export const AuthorLink = styled.a`
+  font-weight: 800;
+  position: relative;
+  ${underline};
+  margin-left: 5px;
 `;

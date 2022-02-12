@@ -30,6 +30,12 @@ export const Layout = (props: Props) => {
           <S.GithubLink>GitHub repo</S.GithubLink>
         </LinkHandler>
       </S.GithubWrapper>
+      <S.AuthorWrapper>
+        NextJS Sandbox by
+        <LinkHandler isExternal elHref="https://creativeprojects.vercel.app/">
+          <S.AuthorLink>Michal Zalobny</S.AuthorLink>
+        </LinkHandler>
+      </S.AuthorWrapper>
       {children}
     </>
   );
