@@ -1,24 +1,29 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface WrapperProps {
-  isBlue: boolean;
-}
-export const Wrapper = styled.div<WrapperProps>`
-  background: red;
-  font-size: 2rem;
+import { sharedValues } from 'utils/sharedValues';
+import { media } from 'utils/media';
 
-  ${props =>
-    props.isBlue &&
-    css`
-      background-color: blue;
-    `}
+export const Wrapper = styled.div`
+  margin: 0 auto;
+  width: 85%;
+
+  ${media.tablet} {
+    width: 140rem;
+  }
 `;
 
 export const Title = styled.h1`
   font-size: 4rem;
-  color: yellow;
+  color: ${sharedValues.colors.trueBlack};
+  font-weight: 800;
+  margin-bottom: 1.5rem;
 `;
 
-export const MainWrapper = styled.div`
-  background: green;
+export const Description = styled.p`
+  font-size: 1.6rem;
+  color: ${sharedValues.colors.trueBlack};
+`;
+
+export const Header = styled.header`
+  margin: 8rem 0;
 `;
