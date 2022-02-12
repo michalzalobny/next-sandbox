@@ -7,6 +7,6 @@ export const Wrapper = styled.div`
   width: 85%;
 
   ${media.tablet} {
-    width: 140rem;
+    width: 100rem;
   }
 `;
