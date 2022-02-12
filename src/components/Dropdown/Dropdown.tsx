@@ -13,7 +13,7 @@ export const Dropdown = () => {
       <S.Wrapper>
         <S.ButtonWrapper>
           <LinkHandler onClickFn={() => setIsExpanded(prev => !prev)}>
-            <S.DropButton>Click to toggle dropdown</S.DropButton>
+            <S.DropButton>Toggle dropdown</S.DropButton>
           </LinkHandler>
         </S.ButtonWrapper>
 
