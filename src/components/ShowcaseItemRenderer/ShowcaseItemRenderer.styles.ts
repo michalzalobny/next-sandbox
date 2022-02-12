@@ -4,7 +4,7 @@ import { underline } from 'utils/sharedStyled';
 import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled.div`
-  padding: 40px 0;
+  padding: 25px 0;
   border-top: 1px solid ${sharedValues.colors.black};
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ export const TitleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 `;
 
 export const LinkWrapper = styled.div``;

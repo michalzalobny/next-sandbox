@@ -23,7 +23,8 @@ export const Description = styled.p`
 `;
 
 export const Header = styled.header`
-  margin: 80px 0;
+  margin-top: 120px;
+  margin-bottom: 80px;
 `;
 
 export const AuthorWrapper = styled.aside`
