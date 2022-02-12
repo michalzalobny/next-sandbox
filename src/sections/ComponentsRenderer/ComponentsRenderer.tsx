@@ -11,7 +11,7 @@ export const ComponentsRenderer = () => {
       <S.Wrapper>
         <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
-          title="Dropdown/Expandable wrapper"
+          title="1. Dropdown/Expandable wrapper"
         >
           <Dropdown />
         </ShowcaseItemRenderer>
