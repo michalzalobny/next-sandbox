@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { sharedValues } from 'utils/sharedValues';
 import { media } from 'utils/media';
+import { underline } from 'utils/sharedStyled';
 
 export const Wrapper = styled.div`
   margin: 0 auto;
@@ -16,17 +17,43 @@ export const Title = styled.h1`
   font-size: 4.5rem;
   color: ${sharedValues.colors.trueBlack};
   font-weight: 800;
-  margin-bottom: 25px;
 `;
 
 export const Description = styled.p`
   font-size: 15px;
   color: ${sharedValues.colors.trueBlack};
-  padding: 1.5rem;
+  padding: 15px;
   background-color: ${sharedValues.colors.lightGray};
   border-radius: 8px;
 `;
 
 export const Header = styled.header`
-  margin: 8rem 0;
+  margin: 80px 0;
+`;
+
+export const AuthorWrapper = styled.aside`
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+`;
+
+export const AuthorLink = styled.a`
+  font-weight: 800;
+  position: relative;
+  ${underline};
+`;
+
+export const GithubLink = styled.a`
+  position: relative;
+  ${underline};
+`;
+
+export const Separator = styled.span`
+  &:before {
+    content: '/';
+    margin: 0 8px;
+    font-size: 20px;
+  }
 `;
