@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import * as S from './Layout.styles';
+
 interface Props {
   isReady: boolean;
   children: React.ReactChild;
@@ -20,9 +22,7 @@ export const Layout = (props: Props) => {
 
   return (
     <>
-      {/* <div className={clsx(styles.readyWrapper, isReady && styles.readyWrapperReady)}></div>
-      <div className={styles.appBackground} /> */}
-
+      <S.ReadyWrapper isReady={isReady}></S.ReadyWrapper>
       {children}
     </>
   );
