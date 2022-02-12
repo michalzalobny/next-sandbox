@@ -22,17 +22,18 @@ html {
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-html {
-  font-size: calc(100vw / 375 * 10);
+//Moved to /utils/GlobalStyles.ts (to get access to breakpoints variables)
+// html {
+//   font-size: calc(100vw / 375 * 10);
 
-  @media only screen and (min-width: 767px) {
-    font-size: calc(100vw / 1920 * 10);
-  }
+//   @media only screen and (min-width: 767px) {
+//     font-size: calc(100vw / 1920 * 10);
+//   }
 
-  @media only screen and (min-width: 1920px) {
-    font-size: 62.5%;
-  }
-}
+//   @media only screen and (min-width: 1920px) {
+//     font-size: 62.5%;
+//   }
+// }
 
 body {
   overflow-y: scroll;

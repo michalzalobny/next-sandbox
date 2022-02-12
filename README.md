@@ -19,3 +19,12 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Styling
+
+1. For styling use styled-components.
+
+2. In order to set the custom global css styles, use `/utils/GlobalStyles.ts` file.
+
+3. There is also `/styles` folder in the root location. It is only
+   used to initially set default and reset styles for the application and should not be updated in general.

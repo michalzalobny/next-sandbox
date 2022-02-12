@@ -4,6 +4,7 @@ import '../styles/index.scss';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import FontFaceObserver from 'fontfaceobserver';
+import { GlobalStyles } from 'utils/GlobalStyles';
 
 import { Layout } from 'components/Layout/Layout';
 
@@ -34,6 +35,7 @@ export default function MyApp(props: AppProps) {
 
   return (
     <>
+      <GlobalStyles />
       <Layout isReady={isReady}>
         <Component key={router.route + router.locale} router={router} {...pageProps} />
       </Layout>
