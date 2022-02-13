@@ -17,7 +17,7 @@ export const items: Item[] = [
   {
     imageSrc: img2.src,
     description:
-      'Adipiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet spiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nised euismod nisi porta. Mi bibendum neque egestas congue quisque egestas diam in. Aliqpiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nispiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisuam eleifend mi in nulla. Tortor pretium viverra suspendisse',
+      'Adipiscing commodo elit aterdiet dui accumsd euismod nisi porta. Mi bibendum neque egestas congue quisque egestas diam in. Aliqpiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nispiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisuam eleifend mi in nulla. Tortor pretium viverra suspendisse',
   },
   {
     imageSrc: img3.src,
@@ -27,6 +27,6 @@ export const items: Item[] = [
   {
     imageSrc: img4.src,
     description:
-      'Tempor incididunt ut labore et dolopiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisre magna aliqua. Nisl rhoncus mattis rhoncus urna. Sit amet nisl suscipit adipiscing bibendum. Bibendum arcu vitae elementum curabitur. Juspiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisto nec ultrices dui sapien. Sit amet facilsto nec ultrisis magpiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisna etiam tempor.',
+      'Tempor incididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolopiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
   },
 ];
