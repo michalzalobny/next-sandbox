@@ -8,8 +8,7 @@ import { GlobalStyles } from 'utils/GlobalStyles';
 
 import { Layout } from 'components/Layout/Layout';
 
-export default function MyApp(props: AppProps) {
-  const { Component, pageProps } = props;
+export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const [isReady, setIsReady] = useState(false);
@@ -37,7 +36,11 @@ export default function MyApp(props: AppProps) {
     <>
       <GlobalStyles />
       <Layout isReady={isReady}>
-        <Component key={router.route + router.locale} router={router} {...pageProps} />
+        <Component
+          key={`${router.route}${router.locale === undefined ? '' : router.locale}`}
+          router={router}
+          {...pageProps}
+        />
       </Layout>
     </>
   );
