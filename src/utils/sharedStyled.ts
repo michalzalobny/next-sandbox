@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+
 import { sharedValues } from 'utils/sharedValues';
 
 export const s1 = css`
@@ -25,7 +26,7 @@ export const underline = css`
     background-color: currentColor;
     transform-origin: left;
     transform: scaleX(0);
-    transition: transform 0.8s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+    transition: transform 0.8s ${sharedValues.timings.t1};
   }
 
   &:hover {

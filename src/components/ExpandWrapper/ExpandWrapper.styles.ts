@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+import { sharedValues } from 'utils/sharedValues';
+
 export const Wrapper = styled.div`
   position: relative;
 `;
 
 export const ContentWrapper = styled.div`
   overflow: hidden;
-  transition: height 0.8s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  transition: height 0.8s ${sharedValues.timings.t1};
 `;
 
 export const GhostWrapper = styled.div`

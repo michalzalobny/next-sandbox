@@ -25,6 +25,7 @@ const spring = {
 export const Carousel = memo<CarouselProps>(props => {
   const { page, direction, currentIndex, paginate, items } = props;
   const [activeElHeight, setActiveElHeight] = useState(1);
+  const [show, setShow] = useState(false);
 
   const handleDragEnd = ({ offset, velocity }: PanInfo) => {
     const swipe = swipePower(offset.x, velocity.x);
@@ -57,10 +58,15 @@ export const Carousel = memo<CarouselProps>(props => {
     };
   }, [onResize]);
 
+  useEffect(() => {
+    //Shows the carousel only if it got its full height
+    setShow(true);
+  }, []);
+
   return (
     <>
       <S.Wrapper>
-        <S.ItemsContainer style={{ height: activeElHeight }}>
+        <S.ItemsContainer show={show} style={{ height: activeElHeight }}>
           <AnimatePresence initial={false} custom={direction}>
             <S.Item
               key={page}

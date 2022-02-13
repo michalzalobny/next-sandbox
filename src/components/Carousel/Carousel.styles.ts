@@ -1,5 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+
+import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled.div`
   overflow: hidden;
@@ -14,7 +16,22 @@ export const Item = styled(motion.div)`
   height: 100%;
 `;
 
-export const ItemsContainer = styled.div`
+interface ItemsContainerProps {
+  show: boolean;
+}
+
+const heightDuration = '0.8s';
+const opacityDuration = '0.8s';
+
+export const ItemsContainer = styled.div<ItemsContainerProps>`
   position: relative;
-  transition: height 0.8s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  transition: height ${heightDuration} ${sharedValues.timings.t1},
+    opacity ${opacityDuration} ${heightDuration} ease-in-out;
+  opacity: 0;
+
+  ${props =>
+    props.show &&
+    css`
+      opacity: 1;
+    `}
 `;

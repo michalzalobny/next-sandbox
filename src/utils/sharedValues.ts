@@ -13,4 +13,7 @@ export const sharedValues = {
     s2: '30px',
     s3: '8px',
   },
+  timings: {
+    t1: 'cubic-bezier(0.64, 0.02, 0.16, 0.97)',
+  },
 };
