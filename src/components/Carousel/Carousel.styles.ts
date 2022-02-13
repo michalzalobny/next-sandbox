@@ -14,7 +14,7 @@ export const Item = styled(motion.div)`
   height: 100%;
 `;
 
-export const ItemsContainer = styled.div`
+export const ItemsContainer = styled(motion.div)`
   position: relative;
   transition: height 0.8s cubic-bezier(0.64, 0.02, 0.16, 0.97);
 `;
