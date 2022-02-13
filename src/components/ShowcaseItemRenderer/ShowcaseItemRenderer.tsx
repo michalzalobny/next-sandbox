@@ -11,10 +11,10 @@ export interface Props {
 }
 
 export const ShowcaseItemRenderer = (props: Props) => {
-  const { sourceHref, title, children, ...rest } = props;
+  const { sourceHref, title, children } = props;
   return (
     <>
-      <S.Wrapper {...rest}>
+      <S.Wrapper>
         <S.TitleWrapper>
           <S.Title>{title}</S.Title>
           <S.Divider />

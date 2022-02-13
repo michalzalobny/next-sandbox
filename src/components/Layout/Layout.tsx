@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { LinkHandler } from 'components/LinkHandler/LinkHandler';
+import { CopyInfo } from 'sections/CopyInfo/CopyInfo';
 
 import * as S from './Layout.styles';
 
@@ -25,17 +25,7 @@ export const Layout = (props: Props) => {
   return (
     <>
       <S.ReadyWrapper isReady={isReady}></S.ReadyWrapper>
-      <S.GithubWrapper>
-        <LinkHandler isExternal elHref="https://github.com/javusScriptus/next-sandbox">
-          <S.GithubLink>GitHub repo</S.GithubLink>
-        </LinkHandler>
-      </S.GithubWrapper>
-      <S.AuthorWrapper>
-        NextJS Sandbox by
-        <LinkHandler isExternal elHref="https://creativeprojects.vercel.app/">
-          <S.AuthorLink>Michal Zalobny</S.AuthorLink>
-        </LinkHandler>
-      </S.AuthorWrapper>
+      <CopyInfo />
       {children}
     </>
   );

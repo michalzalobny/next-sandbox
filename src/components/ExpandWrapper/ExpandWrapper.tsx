@@ -10,7 +10,7 @@ export interface ExpandWrapperProps {
 }
 
 export const ExpandWrapper = (props: ExpandWrapperProps) => {
-  const { isExpanded, children, ...rest } = props;
+  const { isExpanded, children } = props;
   const ghostRef = useRef<HTMLDivElement | null>(null);
   const ghostSize = useElementSize(ghostRef);
 
@@ -28,7 +28,7 @@ export const ExpandWrapper = (props: ExpandWrapperProps) => {
 
   return (
     <>
-      <S.Wrapper {...rest}>
+      <S.Wrapper>
         <S.GhostWrapper ref={ghostRef}>{children}</S.GhostWrapper>
         <S.ContentWrapper style={{ height: expandHeight }}>{children}</S.ContentWrapper>
       </S.Wrapper>
