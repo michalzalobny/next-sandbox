@@ -17,17 +17,13 @@ const DISAPPEAR_START_OFFSET = 1;
 
 export const LoopItem = (props: Props) => {
   const { activeIndexMv, itemIndex, itemsAmount, children, elPadding, elWidth } = props;
-
   const loopCounter = useRef(0);
 
   const offset = useTransform(activeIndexMv, latest => {
-    const currentIndex = itemIndex - latest + loopCounter.current;
-    if (currentIndex === -1 - DISAPPEAR_START_OFFSET) {
-      loopCounter.current += itemsAmount;
-    }
-    if (currentIndex === itemsAmount) {
-      loopCounter.current -= itemsAmount;
-    }
+    const currentIndex = itemIndex - latest;
+    const wholes = Math.floor((currentIndex + DISAPPEAR_START_OFFSET) / itemsAmount);
+    loopCounter.current = wholes;
+
     return -latest * (elWidth + elPadding);
   });
 
@@ -37,7 +33,7 @@ export const LoopItem = (props: Props) => {
   }) as MotionValue<number>;
 
   const offsetSpringLoop = useTransform(offsetSpring, latest => {
-    return latest + loopCounter.current * (elWidth + elPadding);
+    return latest - loopCounter.current * (elWidth + elPadding) * itemsAmount;
   });
 
   return (
