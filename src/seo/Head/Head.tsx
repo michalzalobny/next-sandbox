@@ -13,7 +13,7 @@ export const Head = (props: HeadProps) => {
   const {
     ogImage = 'https://res.cloudinary.com/dpv0ukspz/image/upload/v1644792165/og-100_eql6tx.jpg',
     title = 'NextJS Sandbox',
-    description = 'All custom components I have made and constantly trying to improve 🚀. I use them mostly in my React application, but all of them might be easily transfered and used with pure css and js.',
+    description = 'All custom components I have made and constantly trying to improve 🚀. I use them mostly in my React applications, but all of them might be easily transfered and used with pure css and js.',
   } = props;
 
   return (

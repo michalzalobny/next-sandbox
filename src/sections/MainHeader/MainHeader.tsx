@@ -22,8 +22,8 @@ export const MainHeader = () => {
         </S.AuthorWrapper>
         <S.Description>
           All custom components I have made and constantly trying to improve 🚀. I use them mostly
-          in my React application, but all of them might be easily transfered and used with pure css
-          and js.
+          in my React applications, but all of them might be easily transfered and used with pure
+          css and js.
         </S.Description>
       </S.Header>
     </>
