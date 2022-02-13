@@ -6,7 +6,7 @@
       "",
       "import * as S from './$TM_FILENAME_BASE.styles';",
       "",
-      "export interface Props {$1}",
+      "interface Props {$1}",
       "",
       "export const $TM_FILENAME_BASE = (props: Props) => {",
       "const { ...rest } = props",

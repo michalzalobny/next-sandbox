@@ -4,12 +4,12 @@ import { useElementSize } from 'hooks/useElementSize';
 
 import * as S from './ExpandWrapper.styles';
 
-export interface ExpandWrapperProps {
+interface Props {
   children: React.ReactNode;
   isExpanded: boolean;
 }
 
-export const ExpandWrapper = (props: ExpandWrapperProps) => {
+export const ExpandWrapper = (props: Props) => {
   const { isExpanded, children } = props;
   const ghostRef = useRef<HTMLDivElement | null>(null);
   const ghostSize = useElementSize(ghostRef);

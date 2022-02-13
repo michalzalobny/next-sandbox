@@ -4,7 +4,7 @@ import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 
 import * as S from './ShowcaseItemRenderer.styles';
 
-export interface Props {
+interface Props {
   title: string;
   children: React.ReactChild;
   sourceHref: string;

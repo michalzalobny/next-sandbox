@@ -3,7 +3,7 @@ import React from 'react';
 
 import { GoogleAnalytics } from '../GoogleAnalytics/GoogleAnalytics';
 
-export interface HeadProps {
+interface HeadProps {
   title?: string;
   description?: string;
   ogImage?: string;

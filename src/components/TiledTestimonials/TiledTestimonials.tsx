@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 
 import { LoopGallery } from 'components/LoopGallery/LoopGallery';
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
-import { wrap } from 'utils/functions/wrap';
 import { items } from 'assets/data';
+import { TestimonialItem } from 'components/TestimonialItem/TestimonialItem';
 
 import * as S from './TiledTestimonials.styles';
 
 export const TiledTestimonials = () => {
-  const [[page, direction], setPage] = useState([0, 0]);
-  const currentIndex = wrap(0, items.length, page);
-  const paginate = (newDirection: number) => setPage([page + newDirection, newDirection]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const paginate = (value: number) => {
+    setActiveIndex(prev => prev + value);
+  };
+
+  const testimonialItems = items.map(item => (
+    <TestimonialItem imageSrc={item.imageSrc} description={item.description} key={item.imageSrc} />
+  ));
 
   return (
     <>
@@ -27,7 +33,7 @@ export const TiledTestimonials = () => {
           </LinkHandler>
         </S.ButtonsWrapper>
 
-        <LoopGallery />
+        <LoopGallery activeIndex={activeIndex} itemsToRender={testimonialItems} />
       </S.Wrapper>
     </>
   );

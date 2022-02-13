@@ -5,7 +5,7 @@ import { PreloadImage } from 'components/PreloadImage/PreloadImage';
 import * as S from './DetailsInfo.styles';
 import { slide } from './DetailsInfo.motion';
 
-export interface Props {
+interface Props {
   direction: number; //Used to animate content elements depending on the direction of the slide
   description: string;
   imageSrc: string;
