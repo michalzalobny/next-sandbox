@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import { sharedValues } from 'utils/sharedValues';
-import { underline } from 'utils/sharedStyled';
+import { underline, m2, s1 } from 'utils/sharedStyled';
 
 export const Title = styled.h1`
-  font-size: 4.5rem;
+  ${m2};
   color: ${sharedValues.colors.trueBlack};
 
   span {
@@ -13,26 +13,24 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-  font-size: 14px;
-  line-height: 1.5;
+  ${s1};
   color: ${sharedValues.colors.purple};
-  padding: 15px;
+  padding: ${sharedValues.spacing.s2};
   background-color: ${sharedValues.colors.lightPurple};
-  border-radius: 8px;
+  border-radius: ${sharedValues.spacing.s3};
   display: inline-block;
 `;
 
 export const Header = styled.header`
-  margin-top: 120px;
-  margin-bottom: 80px;
+  margin-bottom: ${sharedValues.spacing.s2};
 `;
 
 export const AuthorWrapper = styled.aside`
-  font-size: 14px;
+  ${s1};
   display: flex;
   align-items: center;
-  margin-top: 15px;
-  margin-bottom: 25px;
+  margin-top: ${sharedValues.spacing.s1};
+  margin-bottom: ${sharedValues.spacing.s2};
 `;
 
 export const AuthorLink = styled.span`

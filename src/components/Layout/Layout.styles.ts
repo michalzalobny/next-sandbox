@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { underline } from 'utils/sharedStyled';
+import { underline, s1 } from 'utils/sharedStyled';
 
 interface ReadyWrapperProps {
   isReady: boolean;
@@ -40,13 +40,13 @@ export const AuthorWrapper = styled.div`
   right: 30px;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  ${s1};
 `;
 
 export const GithubLink = styled.span`
   display: inline-block;
   position: relative;
-  font-size: 14px;
+  ${s1};
   ${underline};
 `;
 

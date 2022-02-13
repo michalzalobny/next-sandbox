@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { s1, squareButton } from 'utils/sharedStyled';
+import { squareButton } from 'utils/sharedStyled';
 import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled.div`
@@ -9,20 +9,17 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonsWrapper = styled.div`
   display: flex;
+  margin-bottom: ${sharedValues.spacing.s1};
+`;
+
+export const Separator = styled.div`
+  width: ${sharedValues.spacing.s1};
 `;
 
 export const DropButton = styled.span`
   display: inline-block;
   cursor: pointer;
   ${squareButton};
-`;
-
-export const Content = styled.div`
-  margin-top: ${sharedValues.spacing.s1};
-  width: 100%;
-  background-color: ${sharedValues.colors.lightGray};
-  ${s1};
-  padding: ${sharedValues.spacing.s2};
 `;

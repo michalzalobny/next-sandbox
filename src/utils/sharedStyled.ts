@@ -1,11 +1,25 @@
 import { css } from 'styled-components';
 import { sharedValues } from 'utils/sharedValues';
 
+export const s1 = css`
+  font-size: 15px;
+  line-height: 1.6;
+`;
+
+export const m1 = css`
+  font-size: 2.5rem;
+  line-height: 1.4;
+`;
+
+export const m2 = css`
+  font-size: 4.5rem;
+`;
+
 export const underline = css`
   &:before {
     content: '';
     position: absolute;
-    top: 105%;
+    top: 85%;
     width: 100%;
     height: 1px;
     background-color: currentColor;
@@ -22,11 +36,12 @@ export const underline = css`
 `;
 
 export const squareButton = css`
-  font-size: 14px;
+  ${s1};
+  line-height: initial;
   background-color: ${sharedValues.colors.blue};
   color: ${sharedValues.colors.trueWhite};
-  padding: 15px 20px;
-  border-radius: 8px;
+  padding: 12px 20px;
+  border-radius: ${sharedValues.spacing.s3};
   position: relative;
 
   &::before {

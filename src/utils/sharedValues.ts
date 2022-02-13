@@ -8,4 +8,9 @@ export const sharedValues = {
     purple: '#755DB5',
     blue: '#3087ff',
   },
+  spacing: {
+    s1: '15px',
+    s2: '30px',
+    s3: '8px',
+  },
 };
