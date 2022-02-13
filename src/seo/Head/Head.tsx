@@ -11,7 +11,7 @@ interface HeadProps {
 
 export const Head = (props: HeadProps) => {
   const {
-    ogImage = 'https://res.cloudinary.com/dpv0ukspz/image/upload/v1644688438/og-100_tt2vpp.jpg',
+    ogImage = 'https://res.cloudinary.com/dpv0ukspz/image/upload/v1644792165/og-100_eql6tx.jpg',
     title = 'NextJS Sandbox',
     description = 'All custom components I have made and constantly trying to improve 🚀. I use them mostly in my React application, but all of them might be easily transfered and used with pure css and js.',
   } = props;
@@ -22,7 +22,7 @@ export const Head = (props: HeadProps) => {
       <meta name="description" content={description} />
       <link
         rel="icon"
-        href="https://res.cloudinary.com/dpv0ukspz/image/upload/v1644688113/favicon_rg3srh.ico"
+        href="https://res.cloudinary.com/dpv0ukspz/image/upload/v1644792165/fav_hllqbe.png"
       />
 
       <meta property="og:type" content="website" />
