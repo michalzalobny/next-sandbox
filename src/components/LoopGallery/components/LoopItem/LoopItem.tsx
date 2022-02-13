@@ -28,8 +28,9 @@ export const LoopItem = (props: Props) => {
   });
 
   const offsetSpring = useSpring(offset, {
-    stiffness: 200,
-    damping: 20,
+    stiffness: 120,
+    damping: 15,
+    restDelta: 0.01,
   }) as MotionValue<number>;
 
   const offsetSpringLoop = useTransform(offsetSpring, latest => {
