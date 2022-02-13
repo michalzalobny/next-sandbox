@@ -60,18 +60,7 @@ export const Carousel = memo<CarouselProps>(props => {
   return (
     <>
       <S.Wrapper>
-        <S.ItemsContainer
-          style={{ height: activeElHeight }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragTransition={{
-            bounceStiffness: spring.stiffness,
-            bounceDamping: spring.damping,
-            restDelta: spring.restDelta,
-          }}
-          dragElastic={1}
-          onDragEnd={(_e, panInfo) => handleDragEnd(panInfo)}
-        >
+        <S.ItemsContainer style={{ height: activeElHeight }}>
           <AnimatePresence initial={false} custom={direction}>
             <S.Item
               key={page}
@@ -84,6 +73,15 @@ export const Carousel = memo<CarouselProps>(props => {
                 x: { type: 'spring', ...spring },
                 opacity: { duration: 0.5 },
               }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragTransition={{
+                bounceStiffness: spring.stiffness,
+                bounceDamping: spring.damping,
+                restDelta: spring.restDelta,
+              }}
+              dragElastic={1}
+              onDragEnd={(_e, panInfo) => handleDragEnd(panInfo)}
             >
               <div ref={el => handleActiveElRef(el)}>{items[currentIndex]}</div>
             </S.Item>
