@@ -3,6 +3,7 @@ import React from 'react';
 import { CarouselSlider } from 'components/CarouselSlider/CarouselSlider';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
+import { TiledTestimonials } from 'components/TiledTestimonials/TiledTestimonials';
 
 import * as S from './ComponentsRenderer.styles';
 
@@ -21,6 +22,12 @@ export const ComponentsRenderer = () => {
           title="2. Carousel slider"
         >
           <CarouselSlider />
+        </ShowcaseItemRenderer>
+        <ShowcaseItemRenderer
+          sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/TiledTestimonials"
+          title="3. Loop gallery"
+        >
+          <TiledTestimonials />
         </ShowcaseItemRenderer>
       </S.Wrapper>
     </>

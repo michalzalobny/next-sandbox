@@ -2,7 +2,7 @@ import React, { memo, useRef, useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, PanInfo } from 'framer-motion';
 import debounce from 'lodash.debounce';
 
-import { swipePower } from './functions/swipePower';
+import { swipePower } from 'utils/functions/swipePower';
 import * as S from './Carousel.styles';
 import { variants } from './Carousel.motion';
 
