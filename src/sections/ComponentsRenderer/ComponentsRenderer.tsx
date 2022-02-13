@@ -17,7 +17,7 @@ export const ComponentsRenderer = () => {
           <Dropdown />
         </ShowcaseItemRenderer>
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/CarouselSlider"
           title="2. Carousel slider"
         >
           <CarouselSlider />
