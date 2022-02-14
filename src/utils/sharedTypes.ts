@@ -14,3 +14,9 @@ export interface DomRectSSR {
   x: number;
   y: number;
 }
+
+export interface UpdateInfo {
+  slowDownFactor: number;
+  delta: number;
+  time: number;
+}

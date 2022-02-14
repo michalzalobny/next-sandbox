@@ -31,12 +31,12 @@ export const ComponentsRenderer = () => {
           <TiledTestimonials />
         </ShowcaseItemRenderer>
 
-        {/* <ShowcaseItemRenderer
+        <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/TiledTestimonials"
           title="4. Infinite slider"
         >
           <InfiniteTestimonials />
-        </ShowcaseItemRenderer> */}
+        </ShowcaseItemRenderer>
       </S.Wrapper>
     </>
   );
