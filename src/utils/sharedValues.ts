@@ -1,3 +1,5 @@
+const DEFAULT_FPS = 60;
+
 export const sharedValues = {
   colors: {
     trueBlack: '#000000',
@@ -17,8 +19,8 @@ export const sharedValues = {
     t1: 'cubic-bezier(0.64, 0.02, 0.16, 0.97)',
   },
   motion: {
-    DEFAULT_FPS: 60,
-    DT_FPS: 1000 / 60,
+    DEFAULT_FPS: DEFAULT_FPS,
+    DT_FPS: 1000 / DEFAULT_FPS,
     LERP_EASE: 0.07,
     MOMENTUM_DAMPING: 0.6,
     MOMENTUM_CARRY: 0.9,
