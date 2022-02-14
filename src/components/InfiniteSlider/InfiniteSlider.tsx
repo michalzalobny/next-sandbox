@@ -4,10 +4,10 @@ import { useMotionValue } from 'framer-motion';
 import { breakpoints } from 'utils/media';
 import { useElementSize } from 'hooks/useElementSize';
 import { useWindowSize } from 'hooks/useWindowSize';
-import { LoopItem } from 'components/LoopGallery/components/LoopItem/LoopItem';
-
-import * as S from './LoopGallery.styles';
+import { SlideItem } from 'components/InfiniteSlider/components/SlideItem/SlideItem';
 import { calculateSize } from 'utils/functions/calculateSize';
+
+import * as S from './InfiniteSlider.styles';
 
 const renderBreakpoints = [
   {
@@ -40,7 +40,7 @@ interface Props {
   activeIndex: number;
 }
 
-export const LoopGallery = (props: Props) => {
+export const InfiniteSlider = (props: Props) => {
   const { activeIndex, itemsToRender } = props;
   const wrapperRef = useRef(null);
   const wrapperSize = useElementSize(wrapperRef);
@@ -76,7 +76,7 @@ export const LoopGallery = (props: Props) => {
       <S.Wrapper ref={wrapperRef}>
         <S.ItemsWrapper>
           {itemsToRender.map((el, key) => (
-            <LoopItem
+            <SlideItem
               itemsAmount={itemsToRender.length}
               itemIndex={key}
               activeIndexMv={activeIndexMv}
@@ -85,7 +85,7 @@ export const LoopGallery = (props: Props) => {
               elWidth={itemSize.elWidth}
             >
               {el}
-            </LoopItem>
+            </SlideItem>
           ))}
         </S.ItemsWrapper>
       </S.Wrapper>
