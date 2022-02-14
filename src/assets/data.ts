@@ -28,29 +28,29 @@ export const items: Item[] = [
     description:
       'Cursus sit amet dictum sit amet. Proin sagittis nisl rhoncus mattis. In vitae turpis massa ',
   },
-  {
-    imageSrc: img4.src,
-    description:
-      'Tempor incididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolopiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
-  },
-  {
-    imageSrc: img5.src,
-    description:
-      'Adipiscing commodo elit aterdiet dui acccing commodo elit aterdiet dui accumsd euismod umsd euismod nisi porta. Mi bibencing commodo elit aterdiet dui accumsd euismod dum neque egestas congue quisque egestas diam in. Aliqpiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nispiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisuam eleifend mi in nulla. Tortor pretium viverra suspendisse',
-  },
-  {
-    imageSrc: img6.src,
-    description:
-      'Cursus sit amet dictum sit amet. Proin sagittis nisl rhoncus mattdictum sit amet. Proin sagittis niis. In vitae turpis massa ',
-  },
-  {
-    imageSrc: img7.src,
-    description:
-      'Oncididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolre t ut labore et dolopiscing commodo elit at re t ut labore et dolopiscing commodo elit at opiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
-  },
-  {
-    imageSrc: img8.src,
-    description:
-      'Fictum sit amet. Proin sagittis nisl rhoncus maempor incididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolre t ut labore et dolopiscing commodo elit at re t ut labore et dolopiscing commodo elit at opiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
-  },
+  // {
+  //   imageSrc: img4.src,
+  //   description:
+  //     'Tempor incididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolopiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
+  // },
+  // {
+  //   imageSrc: img5.src,
+  //   description:
+  //     'Adipiscing commodo elit aterdiet dui acccing commodo elit aterdiet dui accumsd euismod umsd euismod nisi porta. Mi bibencing commodo elit aterdiet dui accumsd euismod dum neque egestas congue quisque egestas diam in. Aliqpiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nispiscing commodo elit at imperdiet dui accumsan. In egestas erat imperdiet sed euismod nisuam eleifend mi in nulla. Tortor pretium viverra suspendisse',
+  // },
+  // {
+  //   imageSrc: img6.src,
+  //   description:
+  //     'Cursus sit amet dictum sit amet. Proin sagittis nisl rhoncus mattdictum sit amet. Proin sagittis niis. In vitae turpis massa ',
+  // },
+  // {
+  //   imageSrc: img7.src,
+  //   description:
+  //     'Oncididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolre t ut labore et dolopiscing commodo elit at re t ut labore et dolopiscing commodo elit at opiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
+  // },
+  // {
+  //   imageSrc: img8.src,
+  //   description:
+  //     'Fictum sit amet. Proin sagittis nisl rhoncus maempor incididunt ut labore t ut labore et dolopiscing commodo elit at imperdiet dui accumset dolre t ut labore et dolopiscing commodo elit at re t ut labore et dolopiscing commodo elit at opiscing commodo elit at imperdiet dui accumsan. In egesna etiam tempor.',
+  // },
 ];

@@ -46,7 +46,7 @@ export const useElementSize = (elRef: ElRef) => {
   }, [elRef]);
 
   useEffect(() => {
-    const onResizeDebounced = debounce(onResize, 300);
+    const onResizeDebounced = debounce(onResize, 100);
 
     window.addEventListener('resize', onResizeDebounced);
     onResize();

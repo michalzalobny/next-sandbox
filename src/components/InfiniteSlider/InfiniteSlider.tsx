@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useMotionValue } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 import TWEEN from '@tweenjs/tween.js';
+import * as THREE from 'three';
 
 import { useElementSize } from 'hooks/useElementSize';
 import { useWindowSize } from 'hooks/useWindowSize';
@@ -9,15 +10,16 @@ import { calculateSize } from 'utils/functions/calculateSize';
 import { sharedValues } from 'utils/sharedValues';
 import { UpdateInfo } from 'utils/sharedTypes';
 import { lerp } from 'utils/functions/lerp';
+import { Scroll } from 'utils/singletons/Scroll';
 
 import * as S from './InfiniteSlider.styles';
-import { renderBreakpoints, itemSizeSSR } from './InfiniteSlider.settings';
-import { useApplyScroll } from './hooks/useApplyScroll';
-// import { useSeekTo } from './hooks/useSeekTo';
-import { useTouchEvents } from './hooks/useTouchEvents';
-import { useMouseWheelEvents } from './hooks/useMouseWheelEvents';
-import { useOnResize } from './hooks/useOnResize';
-import { useProgress } from './hooks/useProgress';
+import {
+  renderBreakpoints,
+  itemSizeSSR,
+  mouseMultiplier,
+  touchMultiplier,
+  wheelMultiplier,
+} from './InfiniteSlider.settings';
 
 interface Props {
   itemsToRender: React.ReactElement[];
@@ -25,22 +27,24 @@ interface Props {
 
 export const InfiniteSlider = (props: Props) => {
   const { itemsToRender } = props;
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperSize = useElementSize(wrapperRef);
   const { windowSize } = useWindowSize();
   const [itemSize, setItemSize] = useState(itemSizeSSR);
-
   const offsetX = useMotionValue(0);
   const offsetXLerp = useMotionValue(0);
   const progressRatio = useMotionValue(0);
-  const lastTouchX = useRef<number>(0);
-  const useMomentum = useRef<boolean>(false);
-  const touchMomentum = useRef<number>(0);
   const TWEEN_GROUP_SEEK = useRef(new TWEEN.Group());
-
   const rafId = useRef<number | null>(null);
   const lastFrameTime = useRef<number | null>(null);
   const isResumed = useRef(true);
+  const scroll = useRef(new Scroll());
+  const contentWidthRef = useRef(1);
+
+  //Transfer react values to refs
+  useEffect(() => {
+    contentWidthRef.current = (itemSize.elPadding + itemSize.elWidth) * itemsToRender.length;
+  }, [itemSize, itemsToRender.length]);
 
   useEffect(() => {
     const wrapperWidth = wrapperSize.size.clientRect.width;
@@ -58,142 +62,109 @@ export const InfiniteSlider = (props: Props) => {
     setItemSize(size);
   }, [windowSize.windowWidth, wrapperSize.size.clientRect.width]);
 
-  // Hooks
-  const { getProgressValues } = useProgress({
-    contentWidth: (itemSize.elWidth + itemSize.elPadding) * itemsToRender.length,
-    offsetX,
-    progressRatio,
-  });
+  const applyScroll = (amountPx: number) => {
+    const contentWidth = contentWidthRef.current;
+    const newOffsetX = offsetX.get() + amountPx;
+    offsetX.set(newOffsetX);
+    let newProgressRatio;
+    if (offsetX.get() < 0) {
+      newProgressRatio = 1 - ((offsetX.get() * -1) % contentWidth) / contentWidth;
+    } else {
+      newProgressRatio = (offsetX.get() % contentWidth) / contentWidth;
+    }
+    progressRatio.set(newProgressRatio);
+  };
 
-  const { applyScroll } = useApplyScroll({
-    contentWidth: (itemSize.elWidth + itemSize.elPadding) * itemsToRender.length,
-    offsetX,
-    windowWidth: windowSize.windowWidth,
-    progressRatio,
-    getProgressValues,
-    TWEEN_GROUP_SEEK,
-  });
+  const onScrollMouse = (e: THREE.Event) => {
+    applyScroll(e.x * mouseMultiplier * -1);
+  };
+  const onScrollTouch = (e: THREE.Event) => {
+    applyScroll(e.x * touchMultiplier * -1);
+  };
+  const onScrollWheel = (e: THREE.Event) => {
+    applyScroll(e.y * wheelMultiplier * -1);
+  };
 
-  // const { seekTo } = useSeekTo({
-  //   offsetX,
-  //   useMomentum,
-  //   progressRatio,
-  //   windowWidth: windowSize.windowWidth,
-  //   contentWidth: (itemSize.elWidth + itemSize.elPadding) * itemsToRender.length,
-  //   getProgressValues,
-  //   TWEEN_GROUP_SEEK,
-  // });
-
-  const { onTouchEnd, onTouchMove, onTouchStart } = useTouchEvents({
-    applyScroll,
-    useMomentum,
-    lastTouchX,
-    touchMomentum,
-  });
-
-  const { onMouseWheel } = useMouseWheelEvents({ useMomentum, applyScroll });
-
-  const { onResizeDebounced, onResize } = useOnResize({
-    useMomentum,
-    offsetX,
-    TWEEN_GROUP_SEEK,
-    getProgressValues,
-  });
+  //Preserve progress on resize
+  useEffect(() => {
+    offsetX.set(progressRatio.get() * contentWidthRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemSize]);
 
   useEffect(() => {
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
-    window.addEventListener('touchend', onTouchEnd, { passive: true });
-    window.addEventListener('wheel', onMouseWheel, { passive: true });
-    window.addEventListener('resize', onResizeDebounced);
-    onResize();
+    wrapperRef.current && scroll.current.setTargetElement(wrapperRef.current);
+    const scrollObj = scroll.current;
+
+    scrollObj.addEventListener('mouse', onScrollMouse);
+    scrollObj.addEventListener('touch', onScrollTouch);
+    scrollObj.addEventListener('wheel', onScrollWheel);
 
     return () => {
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
-      window.removeEventListener('wheel', onMouseWheel);
-      window.removeEventListener('resize', onResizeDebounced);
+      scrollObj.removeEventListener('mouse', onScrollMouse);
+      scrollObj.removeEventListener('touch', onScrollTouch);
+      scrollObj.removeEventListener('wheel', onScrollWheel);
+      scrollObj.destroy();
     };
-  }, [onMouseWheel, onResize, onResizeDebounced, onTouchEnd, onTouchMove, onTouchStart]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //Custom render loop
   const stopAppFrame = () => {
     if (rafId.current) window.cancelAnimationFrame(rafId.current);
   };
 
-  const handleMomentum = React.useCallback(
-    (updateInfo: UpdateInfo) => {
-      touchMomentum.current *= Math.pow(
-        sharedValues.motion.MOMENTUM_DAMPING,
-        updateInfo.slowDownFactor
-      );
-      if (!useMomentum.current) return;
-      if (touchMomentum.current >= 0.01 || touchMomentum.current <= -0.01) {
-        applyScroll({ horizontalAmountPx: touchMomentum.current });
-      }
-    },
-    [applyScroll]
-  );
+  const handleLerp = (updateInfo: UpdateInfo) => {
+    const newOffsetXLerp = lerp(
+      offsetXLerp.get(),
+      offsetX.get(),
+      sharedValues.motion.LERP_EASE * updateInfo.slowDownFactor
+    );
+    offsetXLerp.set(newOffsetXLerp);
+  };
 
-  const handleLerp = React.useCallback(
-    (updateInfo: UpdateInfo) => {
-      const newOffsetXLerp = lerp(
-        offsetXLerp.get(),
-        offsetX.get(),
-        sharedValues.motion.LERP_EASE * updateInfo.slowDownFactor
-      );
-      offsetXLerp.set(newOffsetXLerp);
-    },
-    [offsetX, offsetXLerp]
-  );
+  const renderOnFrame = (time: number) => {
+    rafId.current = window.requestAnimationFrame(renderOnFrame);
 
-  const renderOnFrame = React.useCallback(
-    (time: number) => {
-      rafId.current = window.requestAnimationFrame(renderOnFrame);
+    if (isResumed.current || !lastFrameTime.current) {
+      lastFrameTime.current = window.performance.now();
+      isResumed.current = false;
+      return;
+    }
 
-      if (isResumed.current || !lastFrameTime.current) {
-        lastFrameTime.current = window.performance.now();
-        isResumed.current = false;
-        return;
-      }
+    TWEEN.update(time);
+    TWEEN_GROUP_SEEK.current.update(time);
 
-      TWEEN.update(time);
-      TWEEN_GROUP_SEEK.current.update(time);
+    const delta = time - lastFrameTime.current;
+    let slowDownFactor = delta / sharedValues.motion.DT_FPS;
 
-      const delta = time - lastFrameTime.current;
-      let slowDownFactor = delta / sharedValues.motion.DT_FPS;
+    //Rounded slowDown factor to the nearest integer reduces physics lags
+    const slowDownFactorRounded = Math.round(slowDownFactor);
 
-      //Rounded slowDown factor to the nearest integer reduces physics lags
-      const slowDownFactorRounded = Math.round(slowDownFactor);
+    if (slowDownFactorRounded >= 1) {
+      slowDownFactor = slowDownFactorRounded;
+    }
+    lastFrameTime.current = time;
 
-      if (slowDownFactorRounded >= 1) {
-        slowDownFactor = slowDownFactorRounded;
-      }
-      lastFrameTime.current = time;
+    const updateInfo: UpdateInfo = {
+      delta,
+      slowDownFactor,
+      time,
+    };
 
-      const updateInfo: UpdateInfo = {
-        delta,
-        slowDownFactor,
-        time,
-      };
+    //Own updates
+    handleLerp(updateInfo);
+    scroll.current.update(updateInfo);
+  };
 
-      //Own updates
-      handleMomentum(updateInfo);
-      handleLerp(updateInfo);
-    },
-    [handleLerp, handleMomentum]
-  );
-
-  const resumeAppFrame = React.useCallback(() => {
+  const resumeAppFrame = () => {
     rafId.current = window.requestAnimationFrame(renderOnFrame);
     isResumed.current = true;
-  }, [renderOnFrame]);
+  };
 
-  const onVisibilityChange = React.useCallback(() => {
+  const onVisibilityChange = () => {
     if (document.hidden) return stopAppFrame();
     return resumeAppFrame();
-  }, [resumeAppFrame]);
+  };
 
   useEffect(() => {
     resumeAppFrame();
@@ -202,14 +173,42 @@ export const InfiniteSlider = (props: Props) => {
       stopAppFrame();
       window.removeEventListener('visibilitychange', onVisibilityChange);
     };
-  }, [onVisibilityChange, resumeAppFrame]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <S.Wrapper ref={wrapperRef}>
+      <S.Wrapper style={{ position: 'relative' }} ref={wrapperRef}>
+        <motion.div
+          style={{
+            zIndex: 10,
+            background: 'black',
+            width: 100,
+            scaleX: progressRatio,
+            transformOrigin: 'left',
+            height: 5,
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+          }}
+        />
+        <motion.div
+          style={{
+            zIndex: 10,
+            background: 'black',
+            opacity: 0.1,
+            width: 100,
+            transformOrigin: 'left',
+            height: 5,
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+          }}
+        />
         <S.ItemsWrapper>
-          {itemsToRender.map(el => (
+          {itemsToRender.map((el, index) => (
             <SlideItem
+              itemIndex={index}
               itemsAmount={itemsToRender.length}
               offsetX={offsetXLerp}
               key={el.key}

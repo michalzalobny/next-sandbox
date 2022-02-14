@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import { useTransform, MotionValue } from 'framer-motion';
 
-import { modHorizontal } from 'utils/functions/modHorizontal';
-
 import * as S from './SlideItem.styles';
 
 interface Props {
@@ -11,18 +9,20 @@ interface Props {
   children: React.ReactElement;
   offsetX: MotionValue<number>;
   itemsAmount: number;
+  itemIndex: number;
 }
 
 export const SlideItem = (props: Props) => {
-  const { offsetX, itemsAmount, children, elPadding, elWidth } = props;
+  const { itemIndex, offsetX, itemsAmount, children, elPadding, elWidth } = props;
   const elRef = useRef<HTMLDivElement | null>(null);
+  const loopCounter = useRef(0);
 
-  const offsetXMod = useTransform(offsetX, latestXMvSpring => {
-    return modHorizontal({
-      value: latestXMvSpring,
-      elRef,
-      limit: (elWidth + elPadding) * itemsAmount,
-    });
+  const offsetXMod = useTransform(offsetX, latest => {
+    const fullWidth = elWidth + elPadding;
+    const currentOffset = itemIndex * fullWidth - latest;
+    const wholes = Math.floor((currentOffset + fullWidth) / (itemsAmount * fullWidth));
+    loopCounter.current = wholes;
+    return -latest - loopCounter.current * fullWidth * itemsAmount;
   });
 
   return (

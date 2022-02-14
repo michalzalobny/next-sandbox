@@ -10,4 +10,5 @@ export const ItemsWrapper = styled(motion.div)`
   width: 100%;
   display: flex;
   align-items: flex-start;
+  user-select: none;
 `;

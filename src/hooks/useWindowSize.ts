@@ -33,7 +33,7 @@ export const useWindowSize = () => {
   }, []);
 
   useEffect(() => {
-    const onResizeDebounced = debounce(onResize, 300);
+    const onResizeDebounced = debounce(onResize, 200);
     window.addEventListener('resize', onResizeDebounced);
     onResize();
     return () => {

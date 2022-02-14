@@ -25,3 +25,7 @@ export const itemSizeSSR = {
   elWidth: 1,
   elPadding: 1,
 };
+
+export const wheelMultiplier = 1;
+export const mouseMultiplier = 2;
+export const touchMultiplier = 2;
