@@ -13,7 +13,7 @@ interface Props {
 }
 
 //Can go from 0 to the amount of items - 1, defines at what point the element should be offset
-const DISAPPEAR_START_OFFSET = 1;
+const DISAPPEAR_START_OFFSET = 2;
 
 export const LoopItem = (props: Props) => {
   const { activeIndexMv, itemIndex, itemsAmount, children, elPadding, elWidth } = props;

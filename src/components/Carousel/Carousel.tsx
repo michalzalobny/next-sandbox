@@ -1,6 +1,6 @@
-import React, { memo, useRef, useState, useEffect, useCallback } from 'react';
+import React, { memo, useRef, useState, useEffect } from 'react';
 import { AnimatePresence, PanInfo } from 'framer-motion';
-import debounce from 'lodash.debounce';
+import { useWindowSize } from 'hooks/useWindowSize';
 
 import { swipePower } from 'utils/functions/swipePower';
 import * as S from './Carousel.styles';
@@ -26,6 +26,7 @@ export const Carousel = memo<CarouselProps>(props => {
   const { page, direction, currentIndex, paginate, items } = props;
   const [activeElHeight, setActiveElHeight] = useState(1);
   const [show, setShow] = useState(false);
+  const { windowSize } = useWindowSize();
 
   const handleDragEnd = ({ offset, velocity }: PanInfo) => {
     const swipe = swipePower(offset.x, velocity.x);
@@ -44,19 +45,11 @@ export const Carousel = memo<CarouselProps>(props => {
     setActiveElHeight(activeElRef.current.clientHeight);
   };
 
-  const onResize = useCallback(() => {
+  //handles window resize
+  useEffect(() => {
     if (activeElRef.current === null) return;
     setActiveElHeight(activeElRef.current.clientHeight);
-  }, []);
-
-  useEffect(() => {
-    const onResizeDebounced = debounce(onResize, 300);
-    window.addEventListener('resize', onResizeDebounced);
-    onResize();
-    return () => {
-      window.removeEventListener('resize', onResizeDebounced);
-    };
-  }, [onResize]);
+  }, [windowSize]);
 
   useEffect(() => {
     //Shows the carousel only if it got its full height
