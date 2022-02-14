@@ -13,7 +13,7 @@ import { lerp } from 'utils/functions/lerp';
 import * as S from './InfiniteSlider.styles';
 import { renderBreakpoints, itemSizeSSR } from './InfiniteSlider.settings';
 import { useApplyScroll } from './hooks/useApplyScroll';
-import { useSeekTo } from './hooks/useSeekTo';
+// import { useSeekTo } from './hooks/useSeekTo';
 import { useTouchEvents } from './hooks/useTouchEvents';
 import { useMouseWheelEvents } from './hooks/useMouseWheelEvents';
 import { useOnResize } from './hooks/useOnResize';
@@ -74,15 +74,15 @@ export const InfiniteSlider = (props: Props) => {
     TWEEN_GROUP_SEEK,
   });
 
-  const { seekTo } = useSeekTo({
-    offsetX,
-    useMomentum,
-    progressRatio,
-    windowWidth: windowSize.windowWidth,
-    contentWidth: (itemSize.elWidth + itemSize.elPadding) * itemsToRender.length,
-    getProgressValues,
-    TWEEN_GROUP_SEEK,
-  });
+  // const { seekTo } = useSeekTo({
+  //   offsetX,
+  //   useMomentum,
+  //   progressRatio,
+  //   windowWidth: windowSize.windowWidth,
+  //   contentWidth: (itemSize.elWidth + itemSize.elPadding) * itemsToRender.length,
+  //   getProgressValues,
+  //   TWEEN_GROUP_SEEK,
+  // });
 
   const { onTouchEnd, onTouchMove, onTouchStart } = useTouchEvents({
     applyScroll,
