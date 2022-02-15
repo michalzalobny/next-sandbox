@@ -18,8 +18,8 @@ export const ItemsWrapper = styled(motion.div)`
 export const ProgressWrapper = styled(motion.div)`
   margin-top: ${sharedValues.spacing.s1};
   position: relative;
-  width: 20%;
-  height: 6px;
+  width: 140px;
+  height: 5px;
   border-radius: 2px;
   overflow: hidden;
 
