@@ -20,3 +20,10 @@ export interface UpdateInfo {
   delta: number;
   time: number;
 }
+
+export interface AnimateProps {
+  duration?: number;
+  delay?: number;
+  destination: number;
+  easing?: (amount: number) => number;
+}

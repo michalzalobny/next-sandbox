@@ -29,3 +29,5 @@ export const itemSizeSSR = {
 export const wheelMultiplier = 1;
 export const mouseMultiplier = 2;
 export const touchMultiplier = 2;
+
+export const timeToSnap = 500;

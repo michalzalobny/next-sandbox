@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useMotionValue } from 'framer-motion';
-import TWEEN from '@tweenjs/tween.js';
+import TWEEN, { Tween } from '@tweenjs/tween.js';
 import * as THREE from 'three';
 
 import { useElementSize } from 'hooks/useElementSize';
@@ -8,7 +8,7 @@ import { useWindowSize } from 'hooks/useWindowSize';
 import { SlideItem } from 'components/InfiniteSlider/components/SlideItem/SlideItem';
 import { calculateSize } from 'utils/functions/calculateSize';
 import { sharedValues } from 'utils/sharedValues';
-import { UpdateInfo } from 'utils/sharedTypes';
+import { UpdateInfo, AnimateProps } from 'utils/sharedTypes';
 import { lerp } from 'utils/functions/lerp';
 import { Scroll } from 'utils/singletons/Scroll';
 
@@ -19,6 +19,7 @@ import {
   mouseMultiplier,
   touchMultiplier,
   wheelMultiplier,
+  timeToSnap,
 } from './InfiniteSlider.settings';
 
 interface Props {
@@ -40,6 +41,11 @@ export const InfiniteSlider = (props: Props) => {
   const isResumed = useRef(true);
   const scroll = useRef(new Scroll());
   const contentWidthRef = useRef(1);
+  const activeIndex = useRef({ last: 0, current: 0 });
+
+  const seekToTween = useRef<Tween<{ progress: number }> | null>(null);
+  const isAutoScrolling = useRef(false);
+  const snapTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   //Transfer react values to refs
   useEffect(() => {
@@ -62,10 +68,42 @@ export const InfiniteSlider = (props: Props) => {
     setItemSize(size);
   }, [windowSize.windowWidth, wrapperSize.size.clientRect.width]);
 
-  const applyScroll = (amountPx: number) => {
+  const seekTo = (props: AnimateProps) => {
+    const {
+      destination,
+      duration = 600,
+      delay = 0,
+      easing = TWEEN.Easing.Exponential.InOut,
+    } = props;
+
+    if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
+    if (seekToTween.current) seekToTween.current.stop();
+    isAutoScrolling.current = true;
+
+    seekToTween.current = new TWEEN.Tween({ progress: offsetX.get() })
+      .to({ progress: destination }, duration)
+      .delay(delay)
+      .easing(easing)
+      .onUpdate(obj => {
+        offsetX.set(obj.progress);
+        updateProgressRatio();
+      })
+      .onComplete(() => {
+        isAutoScrolling.current = false;
+      });
+
+    seekToTween.current.start();
+  };
+
+  const performSnap = () => {
+    const fullItemWidth = contentWidthRef.current / itemsToRender.length;
+    const wholes = Math.floor((offsetX.get() + fullItemWidth * 0) / contentWidthRef.current);
+    const activeIndexItemOffset = activeIndex.current.current * fullItemWidth;
+    seekTo({ destination: wholes * contentWidthRef.current + activeIndexItemOffset });
+  };
+
+  const updateProgressRatio = () => {
     const contentWidth = contentWidthRef.current;
-    const newOffsetX = offsetX.get() + amountPx;
-    offsetX.set(newOffsetX);
     let newProgressRatio;
     if (offsetX.get() < 0) {
       newProgressRatio = 1 - ((offsetX.get() * -1) % contentWidth) / contentWidth;
@@ -73,6 +111,22 @@ export const InfiniteSlider = (props: Props) => {
       newProgressRatio = (offsetX.get() % contentWidth) / contentWidth;
     }
     progressRatio.set(newProgressRatio);
+  };
+
+  const applyScroll = (amountPx: number) => {
+    if (isAutoScrolling.current) {
+      if (seekToTween.current) seekToTween.current.stop();
+      if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
+      isAutoScrolling.current = false;
+    }
+
+    const newOffsetX = offsetX.get() + amountPx;
+    offsetX.set(newOffsetX);
+    updateProgressRatio();
+
+    //Hanlde auto snap
+    if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
+    snapTimeoutId.current = setTimeout(performSnap, timeToSnap);
   };
 
   const onScrollMouse = (e: THREE.Event) => {
@@ -88,6 +142,7 @@ export const InfiniteSlider = (props: Props) => {
   //Preserve progress on resize
   useEffect(() => {
     offsetX.set(progressRatio.get() * contentWidthRef.current);
+    performSnap();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemSize]);
 
@@ -123,6 +178,20 @@ export const InfiniteSlider = (props: Props) => {
     offsetXLerp.set(newOffsetXLerp);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const onIndexChange = () => {};
+
+  const updateIndex = () => {
+    const fullItemWidth = contentWidthRef.current / itemsToRender.length;
+    const currentV = progressRatio.get() * contentWidthRef.current;
+    const newIndex = Math.floor(currentV / fullItemWidth);
+    activeIndex.current.current = newIndex;
+    if (activeIndex.current.current !== activeIndex.current.last) {
+      onIndexChange();
+    }
+    activeIndex.current.last = newIndex;
+  };
+
   const renderOnFrame = (time: number) => {
     rafId.current = window.requestAnimationFrame(renderOnFrame);
 
@@ -154,6 +223,7 @@ export const InfiniteSlider = (props: Props) => {
 
     //Own updates
     handleLerp(updateInfo);
+    updateIndex();
     scroll.current.update(updateInfo);
   };
 
