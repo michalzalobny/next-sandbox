@@ -99,13 +99,12 @@ export class Scroll extends EventDispatcher {
     this._targetElement.addEventListener('wheel', this._onWheel, { passive: false });
 
     this._targetElement.addEventListener('mousedown', this._onTouchDown);
-    this._targetElement.addEventListener('mousemove', this._onTouchMove);
-    this._targetElement.addEventListener('mouseup', this._onTouchUp);
-    this._targetElement.addEventListener('mouseleave', this._onTouchUp);
+    window.addEventListener('mousemove', this._onTouchMove);
+    window.addEventListener('mouseup', this._onTouchUp);
 
     this._targetElement.addEventListener('touchstart', this._onTouchDown, { passive: true });
-    this._targetElement.addEventListener('touchmove', this._onTouchMove, { passive: true });
-    this._targetElement.addEventListener('touchend', this._onTouchUp);
+    window.addEventListener('touchmove', this._onTouchMove, { passive: true });
+    window.addEventListener('touchend', this._onTouchUp);
 
     window.addEventListener('resize', this._onResize);
 
@@ -118,13 +117,12 @@ export class Scroll extends EventDispatcher {
     this._targetElement.removeEventListener('wheel', this._onWheel);
 
     this._targetElement.removeEventListener('mousedown', this._onTouchDown);
-    this._targetElement.removeEventListener('mousemove', this._onTouchMove);
-    this._targetElement.removeEventListener('mouseup', this._onTouchUp);
-    this._targetElement.removeEventListener('mouseleave', this._onTouchUp);
+    window.removeEventListener('mousemove', this._onTouchMove);
+    window.removeEventListener('mouseup', this._onTouchUp);
 
     this._targetElement.removeEventListener('touchstart', this._onTouchDown);
-    this._targetElement.removeEventListener('touchmove', this._onTouchMove);
-    this._targetElement.removeEventListener('touchend', this._onTouchUp);
+    window.removeEventListener('touchmove', this._onTouchMove);
+    window.removeEventListener('touchend', this._onTouchUp);
 
     window.removeEventListener('resize', this._onResize);
   }
