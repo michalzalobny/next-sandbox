@@ -42,6 +42,7 @@ export const InfiniteSlider = (props: Props) => {
   const scroll = useRef(new Scroll());
   const contentWidthRef = useRef(1);
   const activeIndex = useRef({ last: 0, current: 0 });
+  const scrollDirection = useRef<1 | -1>(1);
 
   const seekToTween = useRef<Tween<{ progress: number }> | null>(null);
   const isAutoScrolling = useRef(false);
@@ -95,10 +96,11 @@ export const InfiniteSlider = (props: Props) => {
     seekToTween.current.start();
   };
 
-  const performSnap = () => {
+  const performSnap = (noOffset?: boolean) => {
+    const snapOffset = scrollDirection.current === 1 ? (noOffset ? 0 : 1) : 0;
     const fullItemWidth = contentWidthRef.current / itemsToRender.length;
-    const wholes = Math.floor((offsetX.get() + fullItemWidth * 0) / contentWidthRef.current);
-    const activeIndexItemOffset = activeIndex.current.current * fullItemWidth;
+    const wholes = Math.floor(offsetX.get() / contentWidthRef.current);
+    const activeIndexItemOffset = (activeIndex.current.current + snapOffset) * fullItemWidth;
     seekTo({ destination: wholes * contentWidthRef.current + activeIndexItemOffset });
   };
 
@@ -142,7 +144,7 @@ export const InfiniteSlider = (props: Props) => {
   //Preserve progress on resize
   useEffect(() => {
     offsetX.set(progressRatio.get() * contentWidthRef.current);
-    performSnap();
+    performSnap(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemSize]);
 
@@ -169,7 +171,9 @@ export const InfiniteSlider = (props: Props) => {
   };
 
   const handleLerp = (updateInfo: UpdateInfo) => {
-    if (Math.abs(offsetX.get() - offsetXLerp.get()) < 0.1) return;
+    const difference = offsetX.get() - offsetXLerp.get();
+    scrollDirection.current = difference >= 0 ? 1 : -1;
+    if (Math.abs(difference) < 0.1) return;
     const newOffsetXLerp = lerp(
       offsetXLerp.get(),
       offsetX.get(),
