@@ -114,6 +114,7 @@ export const InfiniteSlider = (props: Props) => {
   };
 
   const handleLerp = (updateInfo: UpdateInfo) => {
+    if (Math.abs(offsetX.get() - offsetXLerp.get()) < 0.1) return;
     const newOffsetXLerp = lerp(
       offsetXLerp.get(),
       offsetX.get(),
