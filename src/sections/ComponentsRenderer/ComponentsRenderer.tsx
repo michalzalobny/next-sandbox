@@ -3,7 +3,6 @@ import React from 'react';
 import { CarouselSlider } from 'components/CarouselSlider/CarouselSlider';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
-import { TiledTestimonials } from 'components/TiledTestimonials/TiledTestimonials';
 import { InfiniteTestimonials } from 'components/InfiniteTestimonials/InfiniteTestimonials';
 
 import * as S from './ComponentsRenderer.styles';
@@ -13,29 +12,24 @@ export const ComponentsRenderer = () => {
     <>
       <S.Wrapper>
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
-          title="1. Dropdown/Expandable wrapper"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/InfiniteSlider/InfiniteSlider.tsx"
+          title="1. Infinite slider"
         >
-          <Dropdown />
+          <InfiniteTestimonials />
         </ShowcaseItemRenderer>
+
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/CarouselSlider"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
           title="2. Carousel slider"
         >
           <CarouselSlider />
         </ShowcaseItemRenderer>
-        {/* <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/TiledTestimonials"
-          title="3. Loop gallery"
-        >
-          <TiledTestimonials />
-        </ShowcaseItemRenderer> */}
 
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/TiledTestimonials"
-          title="3. Infinite slider"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
+          title="3. Dropdown/Expandable wrapper"
         >
-          <InfiniteTestimonials />
+          <Dropdown />
         </ShowcaseItemRenderer>
       </S.Wrapper>
     </>
