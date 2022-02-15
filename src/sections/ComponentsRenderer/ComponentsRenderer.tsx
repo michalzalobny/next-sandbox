@@ -24,16 +24,16 @@ export const ComponentsRenderer = () => {
         >
           <CarouselSlider />
         </ShowcaseItemRenderer>
-        <ShowcaseItemRenderer
+        {/* <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/TiledTestimonials"
           title="3. Loop gallery"
         >
           <TiledTestimonials />
-        </ShowcaseItemRenderer>
+        </ShowcaseItemRenderer> */}
 
         <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/tree/main/src/components/TiledTestimonials"
-          title="4. Infinite slider"
+          title="3. Infinite slider"
         >
           <InfiniteTestimonials />
         </ShowcaseItemRenderer>

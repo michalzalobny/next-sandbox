@@ -15,7 +15,7 @@ export const InfiniteTestimonials = () => {
   return (
     <>
       <S.Wrapper>
-        <S.ButtonsWrapper>
+        {/* <S.ButtonsWrapper>
           <LinkHandler
             onClickFn={() => {
               console.log('1');
@@ -33,7 +33,7 @@ export const InfiniteTestimonials = () => {
           >
             <S.DropButton>Next</S.DropButton>
           </LinkHandler>
-        </S.ButtonsWrapper>
+        </S.ButtonsWrapper> */}
         <InfiniteSlider itemsToRender={testimonialItems} />
       </S.Wrapper>
     </>
