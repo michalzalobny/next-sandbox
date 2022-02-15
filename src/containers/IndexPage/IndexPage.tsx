@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import { Head } from 'seo/Head/Head';
 import { ComponentsRenderer } from 'sections/ComponentsRenderer/ComponentsRenderer';
@@ -14,6 +15,11 @@ export default function IndexPage() {
         <MainHeader />
         <ComponentsRenderer />
       </S.Wrapper>
+      <Link href="/test" passHref>
+        <a style={{ opacity: 0, position: 'fixed', bottom: 0, left: 0, fontSize: '14px' }}>
+          Go to test
+        </a>
+      </Link>
     </>
   );
 }
