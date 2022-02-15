@@ -4,6 +4,7 @@ import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { items } from 'assets/data';
 import { TestimonialItem } from 'components/TestimonialItem/TestimonialItem';
 import { InfiniteSlider } from 'components/InfiniteSlider/InfiniteSlider';
+import { ButtonsProps } from 'components/InfiniteSlider/InfiniteSlider.types';
 
 import * as S from './InfiniteTestimonials.styles';
 
@@ -12,29 +13,26 @@ export const InfiniteTestimonials = () => {
     <TestimonialItem imageSrc={item.imageSrc} description={item.description} key={item.imageSrc} />
   ));
 
+  const Buttons = ({ next, prev }: ButtonsProps) => {
+    return (
+      <S.ButtonsWrapper>
+        <LinkHandler onClickFn={prev}>
+          <S.DropButton>Prev</S.DropButton>
+        </LinkHandler>
+
+        <S.Separator />
+
+        <LinkHandler onClickFn={next}>
+          <S.DropButton>Next</S.DropButton>
+        </LinkHandler>
+      </S.ButtonsWrapper>
+    );
+  };
+
   return (
     <>
       <S.Wrapper>
-        {/* <S.ButtonsWrapper>
-          <LinkHandler
-            onClickFn={() => {
-              console.log('1');
-            }}
-          >
-            <S.DropButton>Prev</S.DropButton>
-          </LinkHandler>
-
-          <S.Separator />
-
-          <LinkHandler
-            onClickFn={() => {
-              console.log('2');
-            }}
-          >
-            <S.DropButton>Next</S.DropButton>
-          </LinkHandler>
-        </S.ButtonsWrapper> */}
-        <InfiniteSlider itemsToRender={testimonialItems} />
+        <InfiniteSlider Buttons={Buttons} itemsToRender={testimonialItems} />
       </S.Wrapper>
     </>
   );

@@ -21,13 +21,15 @@ import {
   wheelMultiplier,
   timeToSnap,
 } from './InfiniteSlider.settings';
+import { ButtonsProps } from './InfiniteSlider.types';
 
 interface Props {
   itemsToRender: React.ReactElement[];
+  Buttons: (props: ButtonsProps) => JSX.Element;
 }
 
 export const InfiniteSlider = (props: Props) => {
-  const { itemsToRender } = props;
+  const { Buttons, itemsToRender } = props;
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperSize = useElementSize(wrapperRef);
   const { windowSize } = useWindowSize();
@@ -120,7 +122,17 @@ export const InfiniteSlider = (props: Props) => {
     progressRatio.set(newProgressRatio);
   };
 
-  const applyScroll = (amountPx: number) => {
+  const next = () => {
+    const fullItemWidth = contentWidthRef.current / itemsToRender.length;
+    applyScroll(fullItemWidth, true);
+  };
+
+  const prev = () => {
+    const fullItemWidth = contentWidthRef.current / itemsToRender.length;
+    applyScroll(-fullItemWidth, true);
+  };
+
+  const applyScroll = (amountPx: number, noOffsetSnap?: boolean) => {
     if (isAutoScrolling.current) {
       if (seekToTween.current) seekToTween.current.stop();
       if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
@@ -132,8 +144,10 @@ export const InfiniteSlider = (props: Props) => {
     updateProgressRatio();
 
     //Hanlde auto snap
+    let snapFn = performSnap;
+    if (noOffsetSnap) snapFn = () => performSnap(true);
     if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
-    snapTimeoutId.current = setTimeout(performSnap, timeToSnap);
+    snapTimeoutId.current = setTimeout(snapFn, timeToSnap);
   };
 
   const onScrollMouse = (e: THREE.Event) => {
@@ -258,6 +272,7 @@ export const InfiniteSlider = (props: Props) => {
 
   return (
     <>
+      <Buttons next={next} prev={prev} />
       <S.Wrapper style={{ position: 'relative' }} ref={wrapperRef}>
         <motion.div
           style={{
