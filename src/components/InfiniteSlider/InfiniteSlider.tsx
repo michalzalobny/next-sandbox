@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import { useMotionValue } from 'framer-motion';
 import TWEEN, { Tween } from '@tweenjs/tween.js';
 import * as THREE from 'three';
 
@@ -273,33 +273,7 @@ export const InfiniteSlider = (props: Props) => {
   return (
     <>
       <Buttons next={next} prev={prev} />
-      <S.Wrapper style={{ position: 'relative' }} ref={wrapperRef}>
-        <motion.div
-          style={{
-            zIndex: 10,
-            background: 'black',
-            width: 100,
-            scaleX: progressRatio,
-            transformOrigin: 'left',
-            height: 5,
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-          }}
-        />
-        <motion.div
-          style={{
-            zIndex: 10,
-            background: 'black',
-            opacity: 0.1,
-            width: 100,
-            transformOrigin: 'left',
-            height: 5,
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-          }}
-        />
+      <S.Wrapper ref={wrapperRef}>
         <S.ItemsWrapper>
           {itemsToRender.map((el, index) => (
             <SlideItem
@@ -315,6 +289,9 @@ export const InfiniteSlider = (props: Props) => {
           ))}
         </S.ItemsWrapper>
       </S.Wrapper>
+      <S.ProgressWrapper>
+        <S.Progress style={{ scaleX: progressRatio }} />
+      </S.ProgressWrapper>
     </>
   );
 };
