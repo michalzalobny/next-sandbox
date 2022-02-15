@@ -96,12 +96,17 @@ export const InfiniteSlider = (props: Props) => {
     seekToTween.current.start();
   };
 
+  const getLoopOffset = () => {
+    const wholes = Math.floor(offsetX.get() / contentWidthRef.current);
+    return wholes * contentWidthRef.current;
+  };
+
   const performSnap = (noOffset?: boolean) => {
     const snapOffset = scrollDirection.current === 1 ? (noOffset ? 0 : 1) : 0;
     const fullItemWidth = contentWidthRef.current / itemsToRender.length;
-    const wholes = Math.floor(offsetX.get() / contentWidthRef.current);
+    const loopOffset = getLoopOffset();
     const activeIndexItemOffset = (activeIndex.current.current + snapOffset) * fullItemWidth;
-    seekTo({ destination: wholes * contentWidthRef.current + activeIndexItemOffset });
+    seekTo({ destination: loopOffset + activeIndexItemOffset + 0.001 }); // + 0.001 fixes issue of lerping asymptote
   };
 
   const updateProgressRatio = () => {
