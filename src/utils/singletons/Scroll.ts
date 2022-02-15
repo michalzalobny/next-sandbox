@@ -133,14 +133,9 @@ export class Scroll extends EventDispatcher {
       return;
     }
 
-    this._touchMomentum.x *= Math.pow(
-      sharedValues.motion.MOMENTUM_DAMPING,
-      updateInfo.slowDownFactor
-    );
-    this._touchMomentum.y *= Math.pow(
-      sharedValues.motion.MOMENTUM_DAMPING,
-      updateInfo.slowDownFactor
-    );
+    const timeFactor = Math.min(Math.max(updateInfo.time / (1000 / updateInfo.time), 1), 4);
+    this._touchMomentum.x *= Math.pow(sharedValues.motion.MOMENTUM_DAMPING, timeFactor);
+    this._touchMomentum.y *= Math.pow(sharedValues.motion.MOMENTUM_DAMPING, timeFactor);
 
     if (Math.abs(this._touchMomentum.x) >= 0.01) {
       this._applyScrollXY({

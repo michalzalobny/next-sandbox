@@ -22,7 +22,7 @@ export const sharedValues = {
     DEFAULT_FPS: DEFAULT_FPS,
     DT_FPS: 1000 / DEFAULT_FPS,
     LERP_EASE: 0.07,
-    MOMENTUM_DAMPING: 0.7,
-    MOMENTUM_CARRY: 0.2,
+    MOMENTUM_DAMPING: 0.8,
+    MOMENTUM_CARRY: 0.6,
   },
 };
