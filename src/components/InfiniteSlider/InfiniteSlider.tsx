@@ -176,7 +176,7 @@ export const InfiniteSlider = (props: Props) => {
     applyScroll(e.x * touchMultiplier * -1);
   };
   const onScrollWheel = (e: THREE.Event) => {
-    applyScroll(e.y * wheelMultiplier * -1);
+    applyScroll(e.y * wheelMultiplier * -1 * 0);
   };
 
   //Preserve progress on resize
