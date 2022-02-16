@@ -6,7 +6,7 @@ import { TestimonialItem } from 'components/TestimonialItem/TestimonialItem';
 import { InfiniteSlider } from 'components/InfiniteSlider/InfiniteSlider';
 import { ButtonsProps } from 'components/InfiniteSlider/InfiniteSlider.types';
 
-import * as S from './InfiniteTestimonials.styles';
+import * as S from './TestimonialsSlider.styles';
 
 const Buttons = ({ next, prev }: ButtonsProps) => {
   return (
@@ -24,7 +24,7 @@ const Buttons = ({ next, prev }: ButtonsProps) => {
   );
 };
 
-export const InfiniteTestimonials = () => {
+export const TestimonialsSlider = () => {
   const testimonialItems = items.map(item => (
     <TestimonialItem imageSrc={item.imageSrc} description={item.description} key={item.imageSrc} />
   ));

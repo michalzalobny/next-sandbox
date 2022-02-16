@@ -3,7 +3,7 @@ import React from 'react';
 import { DetailsCarousel } from 'components/DetailsCarousel/DetailsCarousel';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
-import { InfiniteTestimonials } from 'components/InfiniteTestimonials/InfiniteTestimonials';
+import { TestimonialsSlider } from 'components/TestimonialsSlider/TestimonialsSlider';
 
 import * as S from './ComponentsRenderer.styles';
 
@@ -12,17 +12,17 @@ export const ComponentsRenderer = () => {
     <>
       <S.Wrapper>
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
-          title="1. Carousel slider"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/InfiniteSlider/InfiniteSlider.tsx"
+          title="1. Infinite slider"
         >
-          <DetailsCarousel />
+          <TestimonialsSlider />
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/InfiniteSlider/InfiniteSlider.tsx"
-          title="2. Infinite slider"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
+          title="2. Carousel slider"
         >
-          <InfiniteTestimonials />
+          <DetailsCarousel />
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer
