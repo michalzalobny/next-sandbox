@@ -18,7 +18,6 @@ import {
   itemSizeSSR,
   mouseMultiplier,
   touchMultiplier,
-  wheelMultiplier,
   timeToSnap,
 } from './InfiniteSlider.settings';
 import { ButtonsProps } from './InfiniteSlider.types';

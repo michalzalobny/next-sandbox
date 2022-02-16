@@ -46,6 +46,8 @@ export class Scroll extends EventDispatcher {
   };
 
   _onTouchMove = (event: TouchEvent | MouseEvent) => {
+    if (Math.abs(this._touchMomentum.x) >= 2) event.preventDefault();
+
     if (!this._isTouching) {
       return;
     }
@@ -102,7 +104,7 @@ export class Scroll extends EventDispatcher {
     window.addEventListener('mouseup', this._onTouchUp);
 
     this._targetElement.addEventListener('touchstart', this._onTouchDown, { passive: true });
-    window.addEventListener('touchmove', this._onTouchMove, { passive: true });
+    window.addEventListener('touchmove', this._onTouchMove, { passive: false });
     window.addEventListener('touchend', this._onTouchUp);
 
     window.addEventListener('resize', this._onResize);
