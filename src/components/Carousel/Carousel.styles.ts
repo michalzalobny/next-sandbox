@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 
 import { sharedValues } from 'utils/sharedValues';
 
+import { opacityDuration, heightDuration } from './Carousel.settings';
+
 export const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
@@ -19,9 +21,6 @@ export const Item = styled(motion.div)`
 interface ItemsContainerProps {
   show: boolean;
 }
-
-const heightDuration = '0.8s';
-const opacityDuration = '0.8s';
 
 export const ItemsContainer = styled.div<ItemsContainerProps>`
   position: relative;

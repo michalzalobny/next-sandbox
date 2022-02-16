@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CarouselSlider } from 'components/CarouselSlider/CarouselSlider';
+import { DetailsCarousel } from 'components/DetailsCarousel/DetailsCarousel';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
 import { InfiniteTestimonials } from 'components/InfiniteTestimonials/InfiniteTestimonials';
@@ -15,7 +15,7 @@ export const ComponentsRenderer = () => {
           sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
           title="1. Carousel slider"
         >
-          <CarouselSlider />
+          <DetailsCarousel />
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer

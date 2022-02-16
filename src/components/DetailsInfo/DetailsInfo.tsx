@@ -6,7 +6,7 @@ import * as S from './DetailsInfo.styles';
 import { slide } from './DetailsInfo.motion';
 
 interface Props {
-  direction: number; //Used to animate content elements depending on the direction of the slide
+  direction?: number; //Used to animate content elements depending on the direction of the slide, appended in Carousel component
   description: string;
   imageSrc: string;
 }
