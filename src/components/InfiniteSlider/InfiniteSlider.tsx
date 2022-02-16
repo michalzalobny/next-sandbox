@@ -76,7 +76,7 @@ export const InfiniteSlider = (props: Props) => {
       destination,
       duration = 600,
       delay = 0,
-      easing = TWEEN.Easing.Exponential.InOut,
+      easing = TWEEN.Easing.Sinusoidal.InOut,
     } = props;
 
     if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
@@ -126,7 +126,10 @@ export const InfiniteSlider = (props: Props) => {
     const loopOffset = getLoopOffset();
     const activeIndexItemOffset =
       (activeIndex.current.current + snapOffset + extraSnapOffset) * fullItemWidth;
-    seekTo({ destination: loopOffset + activeIndexItemOffset + 0.001 }); // + 0.001 fixes issue of lerping asymptote
+    seekTo({
+      destination: loopOffset + activeIndexItemOffset + 0.001,
+      easing: TWEEN.Easing.Exponential.InOut,
+    }); // + 0.001 fixes issue of lerping asymptote
   };
 
   const updateProgressRatio = () => {
