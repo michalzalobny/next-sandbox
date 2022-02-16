@@ -8,27 +8,27 @@ import { ButtonsProps } from 'components/Carousel/Carousel.types';
 
 import * as S from './DetailsCarousel.styles';
 
+const Buttons = ({ paginate }: ButtonsProps) => {
+  return (
+    <S.ButtonsWrapper>
+      <LinkHandler onClickFn={() => paginate(-1)}>
+        <S.DropButton>Prev</S.DropButton>
+      </LinkHandler>
+
+      <S.Separator />
+
+      <LinkHandler onClickFn={() => paginate(1)}>
+        <S.DropButton>Next</S.DropButton>
+      </LinkHandler>
+    </S.ButtonsWrapper>
+  );
+};
+
+const carouselItems = items.map(item => (
+  <DetailsInfo imageSrc={item.imageSrc} description={item.description} key={item.imageSrc} />
+));
+
 export const DetailsCarousel = () => {
-  const Buttons = ({ paginate }: ButtonsProps) => {
-    return (
-      <S.ButtonsWrapper>
-        <LinkHandler onClickFn={() => paginate(-1)}>
-          <S.DropButton>Prev</S.DropButton>
-        </LinkHandler>
-
-        <S.Separator />
-
-        <LinkHandler onClickFn={() => paginate(1)}>
-          <S.DropButton>Next</S.DropButton>
-        </LinkHandler>
-      </S.ButtonsWrapper>
-    );
-  };
-
-  const carouselItems = items.map(item => (
-    <DetailsInfo imageSrc={item.imageSrc} description={item.description} key={item.imageSrc} />
-  ));
-
   return (
     <>
       <S.Wrapper>
