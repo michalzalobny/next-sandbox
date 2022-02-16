@@ -77,7 +77,6 @@ export class Scroll extends EventDispatcher {
   };
 
   _onWheel = (event: WheelEvent) => {
-    // event.preventDefault();
     this._useMomentum = false;
 
     const { pixelY } = normalizeWheel(event);

@@ -175,9 +175,6 @@ export const InfiniteSlider = (props: Props) => {
   const onScrollTouch = (e: THREE.Event) => {
     applyScroll(e.x * touchMultiplier * -1);
   };
-  const onScrollWheel = (e: THREE.Event) => {
-    applyScroll(e.y * wheelMultiplier * -1 * 0);
-  };
 
   //Preserve progress on resize
   useEffect(() => {
@@ -189,15 +186,12 @@ export const InfiniteSlider = (props: Props) => {
   useEffect(() => {
     wrapperRef.current && scroll.current.setTargetElement(wrapperRef.current);
     const scrollObj = scroll.current;
-
     scrollObj.addEventListener('mouse', onScrollMouse);
     scrollObj.addEventListener('touch', onScrollTouch);
-    scrollObj.addEventListener('wheel', onScrollWheel);
 
     return () => {
       scrollObj.removeEventListener('mouse', onScrollMouse);
       scrollObj.removeEventListener('touch', onScrollTouch);
-      scrollObj.removeEventListener('wheel', onScrollWheel);
       scrollObj.destroy();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
