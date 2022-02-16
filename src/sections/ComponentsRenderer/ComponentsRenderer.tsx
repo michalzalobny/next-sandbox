@@ -20,7 +20,7 @@ export const ComponentsRenderer = () => {
 
         <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
-          title="2. Carousel slider"
+          title="2. Carousel"
         >
           <DetailsCarousel />
         </ShowcaseItemRenderer>
