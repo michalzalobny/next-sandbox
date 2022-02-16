@@ -103,11 +103,29 @@ export const InfiniteSlider = (props: Props) => {
     return wholes * contentWidthRef.current;
   };
 
-  const performSnap = (noOffset?: boolean) => {
-    const snapOffset = scrollDirection.current === 1 ? (noOffset ? 0 : 1) : 0;
+  const performSnap = () => {
+    const snapOffset = scrollDirection.current === 1 ? 0 : 1;
     const fullItemWidth = contentWidthRef.current / itemsToRender.length;
+
+    const relDiff = offsetX.get() - getLoopOffset();
+    const itemDiff = activeIndex.current.current * fullItemWidth;
+
+    let lean; //goes from 0 to fullItemWidth
+    if (scrollDirection.current === 1) {
+      lean = relDiff - itemDiff;
+    } else {
+      lean = fullItemWidth - (relDiff - itemDiff);
+    }
+
+    //Snap to the next one only if current index is scrolled by over 0.5 of its width
+    let extraSnapOffset = 0;
+    if (lean >= fullItemWidth * 0.5) {
+      extraSnapOffset = scrollDirection.current === 1 ? 1 : -1;
+    }
+
     const loopOffset = getLoopOffset();
-    const activeIndexItemOffset = (activeIndex.current.current + snapOffset) * fullItemWidth;
+    const activeIndexItemOffset =
+      (activeIndex.current.current + snapOffset + extraSnapOffset) * fullItemWidth;
     seekTo({ destination: loopOffset + activeIndexItemOffset + 0.001 }); // + 0.001 fixes issue of lerping asymptote
   };
 
@@ -124,15 +142,15 @@ export const InfiniteSlider = (props: Props) => {
 
   const next = () => {
     const fullItemWidth = contentWidthRef.current / itemsToRender.length;
-    applyScroll(fullItemWidth, true);
+    applyScroll(fullItemWidth);
   };
 
   const prev = () => {
     const fullItemWidth = contentWidthRef.current / itemsToRender.length;
-    applyScroll(-fullItemWidth, true);
+    applyScroll(-fullItemWidth);
   };
 
-  const applyScroll = (amountPx: number, noOffsetSnap?: boolean) => {
+  const applyScroll = (amountPx: number) => {
     if (isAutoScrolling.current) {
       if (seekToTween.current) seekToTween.current.stop();
       if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
@@ -144,10 +162,8 @@ export const InfiniteSlider = (props: Props) => {
     updateProgressRatio();
 
     //Hanlde auto snap
-    let snapFn = performSnap;
-    if (noOffsetSnap) snapFn = () => performSnap(true);
     if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
-    snapTimeoutId.current = setTimeout(snapFn, timeToSnap);
+    snapTimeoutId.current = setTimeout(performSnap, timeToSnap);
   };
 
   const onScrollMouse = (e: THREE.Event) => {
@@ -163,7 +179,7 @@ export const InfiniteSlider = (props: Props) => {
   //Preserve progress on resize
   useEffect(() => {
     offsetX.set(progressRatio.get() * contentWidthRef.current);
-    performSnap(true);
+    performSnap();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemSize]);
 
