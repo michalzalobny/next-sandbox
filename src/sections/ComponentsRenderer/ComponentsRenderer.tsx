@@ -12,17 +12,17 @@ export const ComponentsRenderer = () => {
     <>
       <S.Wrapper>
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/InfiniteSlider/InfiniteSlider.tsx"
-          title="1. Infinite slider"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
+          title="1. Carousel slider"
         >
-          <InfiniteTestimonials />
+          <CarouselSlider />
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Carousel/Carousel.tsx"
-          title="2. Carousel slider"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/InfiniteSlider/InfiniteSlider.tsx"
+          title="2. Infinite slider"
         >
-          <CarouselSlider />
+          <InfiniteTestimonials />
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer
