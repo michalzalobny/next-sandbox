@@ -4,6 +4,7 @@ import { DetailsCarousel } from 'sections/DetailsCarousel/DetailsCarousel';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
 import { TestimonialsSlider } from 'sections/TestimonialsSlider/TestimonialsSlider';
+import { InputsShowcase } from 'sections/InputsShowcase/InputsShowcase';
 
 import * as S from './ComponentsRenderer.styles';
 
@@ -27,7 +28,14 @@ export const ComponentsRenderer = () => {
 
         <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
-          title="3. Dropdown"
+          title="3. Inputs"
+        >
+          <InputsShowcase />
+        </ShowcaseItemRenderer>
+
+        <ShowcaseItemRenderer
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
+          title="4. Dropdown"
         >
           <Dropdown />
         </ShowcaseItemRenderer>
