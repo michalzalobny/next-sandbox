@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
 
 import { DomRectSSR } from 'utils/sharedTypes';
@@ -33,19 +33,19 @@ const emptySize: Size = {
 export const useElementSize = (elRef: ElRef) => {
   const [size, setSize] = useState<Size>(emptySize);
 
-  const onResize = useCallback(() => {
-    if (!elRef.current) return;
-    const rect = elRef.current.getBoundingClientRect();
-
-    return setSize({
-      clientRect: rect,
-      isReady: true,
-      offsetTop: elRef.current.offsetTop, //Retruns offset to relative element (not to the whole page)
-      offsetLeft: elRef.current.offsetLeft,
-    });
-  }, [elRef]);
-
   useEffect(() => {
+    const onResize = () => {
+      if (!elRef.current) return;
+      const rect = elRef.current.getBoundingClientRect();
+
+      return setSize({
+        clientRect: rect,
+        isReady: true,
+        offsetTop: elRef.current.offsetTop, //Retruns offset to relative element (not to the whole page)
+        offsetLeft: elRef.current.offsetLeft,
+      });
+    };
+
     const onResizeDebounced = debounce(onResize, 100);
 
     window.addEventListener('resize', onResizeDebounced);
@@ -54,10 +54,9 @@ export const useElementSize = (elRef: ElRef) => {
     return () => {
       window.removeEventListener('resize', onResizeDebounced);
     };
-  }, [onResize]);
+  }, [elRef]);
 
   return {
-    onResize,
     size,
   };
 };
