@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
 
 export const Track = styled.div`
   width: 100%;
-  height: 10px;
-  background-color: gray;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
   position: relative;
 `;
 

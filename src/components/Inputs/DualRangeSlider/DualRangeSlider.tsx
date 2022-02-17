@@ -38,7 +38,7 @@ export const DualRangeSlider = (props: Props) => {
   const [knobMinOffset, setKnobMinOffset] = useState(0);
   const [knobMaxOffset, setKnobMaxOffset] = useState(300);
 
-  const knobWidth = 30;
+  const knobWidth = 20;
   const separator = knobWidth * 2;
   const knobOffset = knobWidth * 0.5;
 
@@ -55,7 +55,6 @@ export const DualRangeSlider = (props: Props) => {
             $knobWidth={knobWidth}
             drag="x"
             dragMomentum={false}
-            dragElastic={1}
             initial={{
               x: knobMinOffset,
               y: '-50%',
@@ -88,7 +87,6 @@ export const DualRangeSlider = (props: Props) => {
             $knobWidth={knobWidth}
             drag="x"
             dragMomentum={false}
-            dragElastic={1}
             initial={{
               x: knobMaxOffset,
               y: '-50%',
