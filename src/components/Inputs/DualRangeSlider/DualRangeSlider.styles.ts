@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Wrapper = styled.div`
@@ -8,19 +8,18 @@ export const Wrapper = styled.div`
 export const Track = styled.div`
   width: 100%;
   height: 10px;
-  background-color: red;
+  background-color: gray;
   position: relative;
 `;
 
 interface KnobProps {
-  knobWidth: number;
+  $knobWidth: number;
 }
 
 export const Knob = styled(motion.div)<KnobProps>`
-  width: ${props => props.knobWidth}px;
-  opacity: 0.5;
+  width: ${props => props.$knobWidth}px;
   border-radius: 50%;
-  background-color: blue;
+  background-color: black;
   position: absolute;
   top: 50%;
 

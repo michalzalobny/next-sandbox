@@ -38,8 +38,8 @@ export const DualRangeSlider = (props: Props) => {
   const [knobMinOffset, setKnobMinOffset] = useState(0);
   const [knobMaxOffset, setKnobMaxOffset] = useState(300);
 
-  const knobWidth = 20;
-  const separator = knobWidth;
+  const knobWidth = 30;
+  const separator = knobWidth * 2;
   const knobOffset = knobWidth * 0.5;
 
   useEffect(() => {
@@ -52,12 +52,9 @@ export const DualRangeSlider = (props: Props) => {
       <S.Wrapper ref={wrapperRef}>
         <S.Track>
           <S.Knob
-            knobWidth={knobWidth}
+            $knobWidth={knobWidth}
             drag="x"
             dragMomentum={false}
-            dragTransition={{
-              restDelta: 0.0001,
-            }}
             dragElastic={1}
             initial={{
               x: knobMinOffset,
@@ -74,20 +71,13 @@ export const DualRangeSlider = (props: Props) => {
             }}
             onDrag={(_e, panInfo: PanInfo) => {
               let offset = panInfo.point.x - wrapperOffsetLeftRef.current;
-
               if (offset >= knobMaxOffset - separator) {
                 offset = knobMaxOffset - separator;
               } else if (offset <= 0) {
                 offset = 0;
               }
-
-              // offset = Math.max(offset, 0);
-              // offset = Math.min(offset, knobMaxOffset);
-              // offset = Math.max(offset, wrapperWidthRef.current);
-
               setKnobMinOffset(offset);
             }}
-            // Cant be dragged further than...
             dragConstraints={{
               left: 0 - knobOffset,
               right: knobMaxOffset - separator,
@@ -95,12 +85,9 @@ export const DualRangeSlider = (props: Props) => {
           />
 
           <S.Knob
-            knobWidth={knobWidth}
+            $knobWidth={knobWidth}
             drag="x"
             dragMomentum={false}
-            dragTransition={{
-              restDelta: 0.0001,
-            }}
             dragElastic={1}
             initial={{
               x: knobMaxOffset,
@@ -117,20 +104,13 @@ export const DualRangeSlider = (props: Props) => {
             }}
             onDrag={(_e, panInfo: PanInfo) => {
               let offset = panInfo.point.x - wrapperOffsetLeftRef.current;
-
-              // offset = Math.min(offset, wrapperWidthRef.current);
-              // offset = Math.max(offset, knobMinOffset);
-              // offset = Math.max(offset, 0);
-
               if (offset <= knobMinOffset + separator) {
                 offset = knobMinOffset + separator;
               } else if (offset >= wrapperWidthRef.current) {
                 offset = wrapperWidthRef.current;
               }
-
               setKnobMaxOffset(offset);
             }}
-            // Cant be dragged further than...
             dragConstraints={{
               left: knobMinOffset + separator,
               right: wrapperWidthRef.current - knobOffset,
