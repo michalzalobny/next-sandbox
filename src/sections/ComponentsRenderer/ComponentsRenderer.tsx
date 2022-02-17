@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { DetailsCarousel } from 'components/DetailsCarousel/DetailsCarousel';
+import { DetailsCarousel } from 'sections/DetailsCarousel/DetailsCarousel';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
-import { TestimonialsSlider } from 'components/TestimonialsSlider/TestimonialsSlider';
+import { TestimonialsSlider } from 'sections/TestimonialsSlider/TestimonialsSlider';
 
 import * as S from './ComponentsRenderer.styles';
 
