@@ -1,1 +1,1 @@
-export const thumbSize = 30;
+export const thumbSize = 50;
