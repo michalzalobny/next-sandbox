@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-// import { DualRangeSlider } from 'components/Inputs/DualRangeSlider/DualRangeSlider';
-import { DualRangeSlider } from 'components/Inputs/DualRangeSlider copy/DualRangeSlider';
+import { DualRangeSlider } from 'components/Inputs/DualRangeSlider/DualRangeSlider';
 
 import * as S from './InputsShowcase.styles';
 

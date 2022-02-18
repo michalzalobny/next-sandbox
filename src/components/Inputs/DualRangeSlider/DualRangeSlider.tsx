@@ -1,123 +1,117 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { PanInfo } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 import { useElementSize } from 'hooks/useElementSize';
 import { mix } from 'utils/functions/mix';
 
 import * as S from './DualRangeSlider.styles';
+import { thumbSize, spring } from './DualRangeSlider.settings';
 
 interface Props {
-  setSliderMax: React.Dispatch<React.SetStateAction<number>>;
-  setSliderMin: React.Dispatch<React.SetStateAction<number>>;
-  sliderMin: number;
-  sliderMax: number;
+  setSliderUpper: React.Dispatch<React.SetStateAction<number>>;
+  setSliderLower: React.Dispatch<React.SetStateAction<number>>;
+  sliderLower: number;
+  sliderUpper: number;
   minValue: number;
   maxValue: number;
 }
 
-interface GetValue {
-  offset: number;
-  max: number;
-  min: number;
-  trackWidth: number;
-}
-
-const getValue = (props: GetValue): number => {
-  const { max, offset, min, trackWidth } = props;
-  const progress = offset / trackWidth;
-  return mix(min, max, progress);
-};
-
 export const DualRangeSlider = (props: Props) => {
-  const { maxValue, minValue, setSliderMax, sliderMin, sliderMax, setSliderMin } = props;
+  const { maxValue, minValue, setSliderLower, setSliderUpper, sliderLower, sliderUpper } = props;
   const wrapperRef = useRef(null);
   const wrapperSize = useElementSize(wrapperRef);
   const wrapperWidthRef = useRef(1);
   const wrapperOffsetLeftRef = useRef(1);
 
-  const [knobMinOffset, setKnobMinOffset] = useState(0);
-  const [knobMaxOffset, setKnobMaxOffset] = useState(300);
+  const separator = 0;
 
-  const knobWidth = 20;
-  const separator = knobWidth * 2;
-  const knobOffset = knobWidth * 0.5;
+  const sliderLowerMv = useMotionValue(sliderLower);
+  const sliderUpperMv = useMotionValue(sliderUpper);
+
+  const knobLowerX = useTransform(sliderLowerMv, latest => {
+    return (
+      mix(thumbSize, wrapperWidthRef.current, (latest - minValue) / (maxValue - minValue)) -
+      thumbSize
+    );
+  });
+  const knobLowerXSpring = useSpring(knobLowerX, spring);
+
+  const knobUpperX = useTransform(sliderUpperMv, latest => {
+    return (
+      mix(thumbSize, wrapperWidthRef.current, (latest - minValue) / (maxValue - minValue)) -
+      thumbSize
+    );
+  });
+  const knobUpperXSpring = useSpring(knobUpperX, spring);
 
   useEffect(() => {
     wrapperWidthRef.current = wrapperSize.size.clientRect.width;
     wrapperOffsetLeftRef.current = wrapperSize.size.offsetLeft;
   }, [wrapperSize]);
 
+  const handleLower = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newLower = parseInt(e.target.value);
+    if (newLower <= sliderUpperMv.get() - separator) {
+      setSliderLower(newLower);
+      sliderLowerMv.set(newLower);
+    } else {
+      if (sliderUpperMv.get() < maxValue) {
+        const lowerV = Math.min(maxValue - separator, newLower);
+        const upperV = Math.min(maxValue, newLower + separator);
+        setSliderLower(lowerV);
+        setSliderUpper(upperV);
+        sliderLowerMv.set(lowerV);
+        sliderUpperMv.set(upperV);
+      }
+    }
+  };
+
+  const handleUpper = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newUpper = parseInt(e.target.value);
+    if (newUpper >= sliderLowerMv.get() + separator) {
+      setSliderUpper(newUpper);
+      sliderUpperMv.set(newUpper);
+    } else {
+      if (sliderLowerMv.get() > minValue) {
+        const lowerV = Math.max(minValue, newUpper - separator);
+        const upperV = Math.max(minValue + separator, newUpper);
+        setSliderLower(lowerV);
+        setSliderUpper(upperV);
+        sliderLowerMv.set(lowerV);
+        sliderUpperMv.set(upperV);
+      }
+    }
+  };
+
   return (
     <>
       <S.Wrapper ref={wrapperRef}>
-        <S.Track>
-          <S.Knob
-            $knobWidth={knobWidth}
-            drag="x"
-            dragMomentum={false}
-            initial={{
-              x: knobMinOffset,
-              y: '-50%',
-            }}
-            onDragEnd={() => {
-              const value = getValue({
-                offset: knobMinOffset,
-                trackWidth: wrapperSize.size.clientRect.width,
-                min: minValue,
-                max: maxValue,
-              });
-              setSliderMin(value);
-            }}
-            onDrag={(_e, panInfo: PanInfo) => {
-              let offset = panInfo.point.x - wrapperOffsetLeftRef.current;
-              if (offset >= knobMaxOffset - separator) {
-                offset = knobMaxOffset - separator;
-              } else if (offset <= 0) {
-                offset = 0;
-              }
-              setKnobMinOffset(offset);
-            }}
-            dragConstraints={{
-              left: 0 - knobOffset,
-              right: knobMaxOffset - separator,
-            }}
-          />
+        <S.InputsWrapper>
+          <S.Label style={{ x: '-25%', left: knobLowerXSpring }}>{`${sliderLower}s`}</S.Label>
+          <S.Label style={{ x: '-25%', left: knobUpperXSpring }}>{`${sliderUpper}s`}</S.Label>
 
-          <S.Knob
-            $knobWidth={knobWidth}
-            drag="x"
-            dragMomentum={false}
-            initial={{
-              x: knobMaxOffset,
-              y: '-50%',
-            }}
-            onDragEnd={() => {
-              const value = getValue({
-                offset: knobMaxOffset,
-                trackWidth: wrapperSize.size.clientRect.width,
-                min: minValue,
-                max: maxValue,
-              });
-              setSliderMax(value);
-            }}
-            onDrag={(_e, panInfo: PanInfo) => {
-              let offset = panInfo.point.x - wrapperOffsetLeftRef.current;
-              if (offset <= knobMinOffset + separator) {
-                offset = knobMinOffset + separator;
-              } else if (offset >= wrapperWidthRef.current) {
-                offset = wrapperWidthRef.current;
-              }
-              setKnobMaxOffset(offset);
-            }}
-            dragConstraints={{
-              left: knobMinOffset + separator,
-              right: wrapperWidthRef.current - knobOffset,
-            }}
+          <S.Knob style={{ x: knobLowerXSpring, y: '-50%' }} />
+          <S.Knob style={{ x: knobUpperXSpring, y: '-50%' }} />
+          <input
+            step={1}
+            type="range"
+            onChange={handleLower}
+            min={minValue}
+            max={maxValue}
+            value={sliderLower}
+            id="lower"
           />
-        </S.Track>
+          <input
+            step={1}
+            type="range"
+            onChange={handleUpper}
+            min={minValue}
+            max={maxValue}
+            value={sliderUpper}
+            id="upper"
+          />
+        </S.InputsWrapper>
       </S.Wrapper>
-      <input type="hidden" name={'minBudget'} defaultValue={sliderMin} />
-      <input type="hidden" name={'maxBudget'} defaultValue={sliderMax} />
     </>
   );
 };
