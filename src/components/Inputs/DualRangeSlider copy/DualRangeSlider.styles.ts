@@ -66,7 +66,6 @@ export const InputsWrapper = styled.span`
   }
 
   input[type='range'] {
-    opacity: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -96,6 +95,7 @@ export const InputsWrapper = styled.span`
     -webkit-appearance: none;
     margin-top: ${-thumbSize / 2}px;
     pointer-events: initial;
+    opacity: 0;
   }
 
   input[type='range']:focus::-webkit-slider-runnable-track {
@@ -121,6 +121,7 @@ export const InputsWrapper = styled.span`
     background: blue;
     cursor: pointer;
     pointer-events: initial;
+    opacity: 0;
   }
 
   input[type='range']::-ms-track {
@@ -155,6 +156,7 @@ export const InputsWrapper = styled.span`
     background: blue;
     cursor: pointer;
     pointer-events: initial;
+    opacity: 0;
   }
 
   input[type='range']:focus::-ms-fill-lower {
