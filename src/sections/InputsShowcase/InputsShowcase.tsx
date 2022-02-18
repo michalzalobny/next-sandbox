@@ -23,6 +23,8 @@ export const InputsShowcase = () => {
           maxValue={maxValue}
           minValue={minValue}
         />
+        <h1 style={{ fontSize: 20 }}>{sliderLower}</h1>
+        <h1 style={{ fontSize: 20 }}>{sliderUpper}</h1>
       </S.Wrapper>
     </>
   );

@@ -35,7 +35,7 @@ export const DualRangeSlider = (props: Props) => {
   const wrapperWidthRef = useRef(1);
   const wrapperOffsetLeftRef = useRef(1);
 
-  const separator = 20;
+  const separator = 0;
 
   //Refs are ghosting/coyping the slider state value but without react rerender
   //so there is no bugs in handleLower/handleUpper functions (the value is always the most current)

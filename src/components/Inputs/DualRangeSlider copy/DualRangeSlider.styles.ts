@@ -46,5 +46,17 @@ export const InputsWrapper = styled.span`
       cursor: pointer;
       pointer-events: all;
     }
+
+    &:nth-child(1) {
+      &::-webkit-slider-thumb {
+        transform: translateX(-50%);
+      }
+    }
+
+    &:nth-child(2) {
+      &::-webkit-slider-thumb {
+        transform: translateX(50%);
+      }
+    }
   }
 `;
