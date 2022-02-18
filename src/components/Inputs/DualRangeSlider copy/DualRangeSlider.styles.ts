@@ -13,7 +13,7 @@ export const Knob = styled(motion.div)`
   pointer-events: none;
   position: absolute;
   top: 50%;
-  width: 20px;
+  width: ${thumbSize}px;
   border-radius: 50%;
   background-color: red;
 
