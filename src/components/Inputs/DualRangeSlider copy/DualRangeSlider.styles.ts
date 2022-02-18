@@ -49,7 +49,7 @@ export const InputsWrapper = styled.span`
     -webkit-appearance: none;
     width: 100%;
 
-    pointer-events: initial;
+    pointer-events: none;
   }
 
   input[type='range']::-webkit-slider-runnable-track {
