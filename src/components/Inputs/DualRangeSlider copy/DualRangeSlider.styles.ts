@@ -28,7 +28,7 @@ export const InputsWrapper = styled.span`
   display: inline-block;
   width: 100%;
   position: relative;
-  height: 20px;
+  height: ${thumbSize}px;
 
   &:before {
     content: '';
@@ -48,20 +48,16 @@ export const InputsWrapper = styled.span`
     left: 0;
     -webkit-appearance: none;
     width: 100%;
-
     pointer-events: none;
   }
 
   input[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 0px;
-    cursor: pointer;
     box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     background: #424242;
     border-radius: 0px;
     border: 0px solid black;
-
-    /* pointer-events: none; */
   }
 
   input[type='range']::-webkit-slider-thumb {
@@ -74,14 +70,11 @@ export const InputsWrapper = styled.span`
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: ${-thumbSize / 2}px;
-
     pointer-events: initial;
   }
 
   input[type='range']:focus::-webkit-slider-runnable-track {
     background: #424242;
-
-    /* pointer-events: none; */
   }
 
   input[type='range']::-moz-range-track {
@@ -92,8 +85,6 @@ export const InputsWrapper = styled.span`
     background: #424242;
     border-radius: 0px;
     border: 0px solid black;
-
-    /* pointer-events: none; */
   }
 
   input[type='range']::-moz-range-thumb {
@@ -104,20 +95,16 @@ export const InputsWrapper = styled.span`
     border-radius: 50%;
     background: #555bc8;
     cursor: pointer;
-
     pointer-events: initial;
   }
 
   input[type='range']::-ms-track {
     width: 100%;
     height: 0px;
-    cursor: pointer;
     background: transparent;
     border-color: transparent;
     border-width: ${thumbSize}px 0;
     color: transparent;
-
-    /* pointer-events: none; */
   }
 
   input[type='range']::-ms-fill-lower {
@@ -142,7 +129,6 @@ export const InputsWrapper = styled.span`
     border-radius: 50%;
     background: #555bc8;
     cursor: pointer;
-
     pointer-events: initial;
   }
 
