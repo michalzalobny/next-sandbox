@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 import { useElementSize } from 'hooks/useElementSize';
 import { mix } from 'utils/functions/mix';
 
 import * as S from './DualRangeSlider.styles';
+import { thumbSize } from './DualRangeSlider.settings';
 
 interface Props {
   setSliderUpper: React.Dispatch<React.SetStateAction<number>>;
@@ -28,12 +29,12 @@ export const DualRangeSlider = (props: Props) => {
   const sliderUpperMv = useMotionValue(sliderUpper);
 
   const knobLowerX = useTransform(sliderLowerMv, latest => {
-    return mix(20, wrapperWidthRef.current, latest / maxValue) - 20;
+    return mix(thumbSize, wrapperWidthRef.current, latest / maxValue) - thumbSize;
   });
   const knobLowerXSpring = useSpring(knobLowerX, { stiffness: 900, damping: 50, restDelta: 0.01 });
 
   const knobUpperX = useTransform(sliderUpperMv, latest => {
-    return mix(20, wrapperWidthRef.current, latest / maxValue) - 20;
+    return mix(thumbSize, wrapperWidthRef.current, latest / maxValue) - thumbSize;
   });
   const knobUpperXSpring = useSpring(knobUpperX, { stiffness: 900, damping: 50, restDelta: 0.01 });
 
