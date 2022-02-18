@@ -25,9 +25,8 @@ export const InputsWrapper = styled.span`
     position: absolute;
     appearance: none;
     width: 100%;
-    margin: 0;
     border: 0;
-    border-radius: 1px;
+    box-shadow: 0;
     outline: none;
     pointer-events: none;
 
@@ -38,10 +37,11 @@ export const InputsWrapper = styled.span`
 
     &::-webkit-slider-thumb {
       appearance: none;
+      box-shadow: 0;
       height: 20px;
       width: 20px;
       border-radius: 50%;
-      background-color: black;
+      background-color: blue;
       position: relative;
       cursor: pointer;
       pointer-events: all;
