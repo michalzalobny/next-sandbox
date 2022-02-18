@@ -27,8 +27,8 @@ export const ComponentsRenderer = () => {
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
-          title="3. Inputs"
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Inputs/DualRangeSlider/DualRangeSlider.tsx"
+          title="3. Range slider"
         >
           <InputsShowcase />
         </ShowcaseItemRenderer>
