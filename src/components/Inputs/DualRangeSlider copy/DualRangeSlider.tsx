@@ -5,7 +5,7 @@ import { useElementSize } from 'hooks/useElementSize';
 import { mix } from 'utils/functions/mix';
 
 import * as S from './DualRangeSlider.styles';
-import { thumbSize } from './DualRangeSlider.settings';
+import { thumbSize, spring } from './DualRangeSlider.settings';
 
 interface Props {
   setSliderUpper: React.Dispatch<React.SetStateAction<number>>;
@@ -31,12 +31,12 @@ export const DualRangeSlider = (props: Props) => {
   const knobLowerX = useTransform(sliderLowerMv, latest => {
     return mix(thumbSize, wrapperWidthRef.current, latest / maxValue) - thumbSize;
   });
-  const knobLowerXSpring = useSpring(knobLowerX, { stiffness: 900, damping: 50, restDelta: 0.01 });
+  const knobLowerXSpring = useSpring(knobLowerX, spring);
 
   const knobUpperX = useTransform(sliderUpperMv, latest => {
     return mix(thumbSize, wrapperWidthRef.current, latest / maxValue) - thumbSize;
   });
-  const knobUpperXSpring = useSpring(knobUpperX, { stiffness: 900, damping: 50, restDelta: 0.01 });
+  const knobUpperXSpring = useSpring(knobUpperX, spring);
 
   useEffect(() => {
     wrapperWidthRef.current = wrapperSize.size.clientRect.width;

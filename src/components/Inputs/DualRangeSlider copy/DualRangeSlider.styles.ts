@@ -3,19 +3,44 @@ import styled from 'styled-components';
 
 import { thumbSize } from './DualRangeSlider.settings';
 
+const poleColor = '#c7c7c7';
+const knobColor = '#000000';
+
 export const Wrapper = styled.div`
   width: 100%;
   position: relative;
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: ${poleColor};
+    border-radius: 50%;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &:after {
+    left: initial;
+    right: 0;
+  }
 `;
 
 export const Knob = styled(motion.div)`
   user-select: none;
   pointer-events: none;
   position: absolute;
+  z-index: 2;
   top: 50%;
   width: ${thumbSize}px;
   border-radius: 50%;
-  background-color: red;
+  background-color: ${knobColor};
 
   &:before {
     content: '';
@@ -27,14 +52,13 @@ export const Knob = styled(motion.div)`
 export const InputsWrapper = styled.span`
   display: inline-block;
   width: 100%;
-  position: relative;
   height: ${thumbSize}px;
 
   &:before {
     content: '';
     width: 100%;
     height: 2px;
-    background: gray;
+    background: ${poleColor};
     position: absolute;
     top: 50%;
     left: 0;
@@ -42,6 +66,7 @@ export const InputsWrapper = styled.span`
   }
 
   input[type='range'] {
+    opacity: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -55,7 +80,7 @@ export const InputsWrapper = styled.span`
     width: 100%;
     height: 0px;
     box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-    background: #424242;
+    background: black;
     border-radius: 0px;
     border: 0px solid black;
   }
@@ -66,7 +91,7 @@ export const InputsWrapper = styled.span`
     height: ${thumbSize}px;
     width: ${thumbSize}px;
     border-radius: 50%;
-    background: #555bc8;
+    background: blue;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: ${-thumbSize / 2}px;
@@ -74,7 +99,7 @@ export const InputsWrapper = styled.span`
   }
 
   input[type='range']:focus::-webkit-slider-runnable-track {
-    background: #424242;
+    background: black;
   }
 
   input[type='range']::-moz-range-track {
@@ -82,7 +107,7 @@ export const InputsWrapper = styled.span`
     height: 0px;
     cursor: pointer;
     box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-    background: #424242;
+    background: black;
     border-radius: 0px;
     border: 0px solid black;
   }
@@ -93,7 +118,7 @@ export const InputsWrapper = styled.span`
     height: ${thumbSize}px;
     width: ${thumbSize}px;
     border-radius: 50%;
-    background: #555bc8;
+    background: blue;
     cursor: pointer;
     pointer-events: initial;
   }
@@ -108,14 +133,14 @@ export const InputsWrapper = styled.span`
   }
 
   input[type='range']::-ms-fill-lower {
-    background: #424242;
+    background: black;
     border: 0px solid black;
     border-radius: 0px;
     box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   }
 
   input[type='range']::-ms-fill-upper {
-    background: #424242;
+    background: black;
     border: 0px solid black;
     border-radius: 0px;
     box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
@@ -127,12 +152,12 @@ export const InputsWrapper = styled.span`
     height: ${thumbSize}px;
     width: ${thumbSize}px;
     border-radius: 50%;
-    background: #555bc8;
+    background: blue;
     cursor: pointer;
     pointer-events: initial;
   }
 
   input[type='range']:focus::-ms-fill-lower {
-    background: #424242;
+    background: black;
   }
 `;
