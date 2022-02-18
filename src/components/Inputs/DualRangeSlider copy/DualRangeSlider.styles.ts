@@ -32,6 +32,14 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Label = styled(motion.label)`
+  font-size: 13px;
+  color: ${poleColor};
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+`;
+
 export const Knob = styled(motion.div)`
   user-select: none;
   pointer-events: none;

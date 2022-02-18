@@ -29,12 +29,18 @@ export const DualRangeSlider = (props: Props) => {
   const sliderUpperMv = useMotionValue(sliderUpper);
 
   const knobLowerX = useTransform(sliderLowerMv, latest => {
-    return mix(thumbSize, wrapperWidthRef.current, latest / maxValue) - thumbSize;
+    return (
+      mix(thumbSize, wrapperWidthRef.current, (latest - minValue) / (maxValue - minValue)) -
+      thumbSize
+    );
   });
   const knobLowerXSpring = useSpring(knobLowerX, spring);
 
   const knobUpperX = useTransform(sliderUpperMv, latest => {
-    return mix(thumbSize, wrapperWidthRef.current, latest / maxValue) - thumbSize;
+    return (
+      mix(thumbSize, wrapperWidthRef.current, (latest - minValue) / (maxValue - minValue)) -
+      thumbSize
+    );
   });
   const knobUpperXSpring = useSpring(knobUpperX, spring);
 
@@ -81,6 +87,9 @@ export const DualRangeSlider = (props: Props) => {
     <>
       <S.Wrapper ref={wrapperRef}>
         <S.InputsWrapper>
+          <S.Label style={{ x: knobLowerXSpring }}>{`${sliderLower}s`}</S.Label>
+          <S.Label style={{ x: knobUpperXSpring }}>{`${sliderUpper}s`}</S.Label>
+
           <S.Knob style={{ x: knobLowerXSpring, y: '-50%' }} />
           <S.Knob style={{ x: knobUpperXSpring, y: '-50%' }} />
           <input
