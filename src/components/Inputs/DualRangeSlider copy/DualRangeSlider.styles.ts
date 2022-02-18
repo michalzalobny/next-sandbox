@@ -27,13 +27,7 @@ export const InputsWrapper = styled.span`
     width: 100%;
     border: 0;
     box-shadow: 0;
-    outline: none;
     pointer-events: none;
-
-    &:active,
-    &:focus {
-      outline: none;
-    }
 
     &::-webkit-slider-thumb {
       appearance: none;
