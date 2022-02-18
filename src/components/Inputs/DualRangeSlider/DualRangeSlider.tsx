@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 import { useElementSize } from 'hooks/useElementSize';
+import { useWindowSize } from 'hooks/useWindowSize';
 import { mix } from 'utils/functions/mix';
 
 import * as S from './DualRangeSlider.styles';
@@ -22,9 +23,8 @@ export const DualRangeSlider = (props: Props) => {
   const wrapperSize = useElementSize(wrapperRef);
   const wrapperWidthRef = useRef(1);
   const wrapperOffsetLeftRef = useRef(1);
-
-  const separator = 0;
-
+  const { windowSize } = useWindowSize();
+  const separator = 0; //Value Distance between knobs
   const sliderLowerMv = useMotionValue(sliderLower);
   const sliderUpperMv = useMotionValue(sliderUpper);
 
@@ -49,8 +49,15 @@ export const DualRangeSlider = (props: Props) => {
     wrapperOffsetLeftRef.current = wrapperSize.size.offsetLeft;
   }, [wrapperSize]);
 
-  const handleLower = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newLower = parseInt(e.target.value);
+  //On window resize
+  useEffect(() => {
+    handleLower(sliderLower);
+    handleUpper(sliderUpper);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [windowSize]);
+
+  const handleLower = (value: number) => {
+    const newLower = value;
     if (newLower <= sliderUpperMv.get() - separator) {
       setSliderLower(newLower);
       sliderLowerMv.set(newLower);
@@ -66,8 +73,8 @@ export const DualRangeSlider = (props: Props) => {
     }
   };
 
-  const handleUpper = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newUpper = parseInt(e.target.value);
+  const handleUpper = (value: number) => {
+    const newUpper = value;
     if (newUpper >= sliderLowerMv.get() + separator) {
       setSliderUpper(newUpper);
       sliderUpperMv.set(newUpper);
@@ -95,7 +102,7 @@ export const DualRangeSlider = (props: Props) => {
           <input
             step={1}
             type="range"
-            onChange={handleLower}
+            onChange={e => handleLower(parseInt(e.target.value))}
             min={minValue}
             max={maxValue}
             value={sliderLower}
@@ -104,7 +111,7 @@ export const DualRangeSlider = (props: Props) => {
           <input
             step={1}
             type="range"
-            onChange={handleUpper}
+            onChange={e => handleUpper(parseInt(e.target.value))}
             min={minValue}
             max={maxValue}
             value={sliderUpper}
