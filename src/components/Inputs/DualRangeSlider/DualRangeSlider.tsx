@@ -15,16 +15,24 @@ interface Props {
   sliderUpper: number;
   minValue: number;
   maxValue: number;
+  separator: number; //Distance between knobs (its a value distance not pixel)
 }
 
 export const DualRangeSlider = (props: Props) => {
-  const { maxValue, minValue, setSliderLower, setSliderUpper, sliderLower, sliderUpper } = props;
+  const {
+    separator,
+    maxValue,
+    minValue,
+    setSliderLower,
+    setSliderUpper,
+    sliderLower,
+    sliderUpper,
+  } = props;
   const wrapperRef = useRef(null);
   const wrapperSize = useElementSize(wrapperRef);
   const wrapperWidthRef = useRef(1);
   const wrapperOffsetLeftRef = useRef(1);
   const { windowSize } = useWindowSize();
-  const separator = 0; //Value Distance between knobs
   const sliderLowerMv = useMotionValue(sliderLower);
   const sliderUpperMv = useMotionValue(sliderUpper);
 

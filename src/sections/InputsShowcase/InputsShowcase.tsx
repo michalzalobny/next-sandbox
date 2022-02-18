@@ -21,6 +21,7 @@ export const InputsShowcase = () => {
           sliderLower={sliderLower}
           maxValue={maxValue}
           minValue={minValue}
+          separator={0}
         />
       </S.Wrapper>
     </>
