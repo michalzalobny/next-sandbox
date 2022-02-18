@@ -87,8 +87,8 @@ export const DualRangeSlider = (props: Props) => {
     <>
       <S.Wrapper ref={wrapperRef}>
         <S.InputsWrapper>
-          <S.Label style={{ x: knobLowerXSpring }}>{`${sliderLower}s`}</S.Label>
-          <S.Label style={{ x: knobUpperXSpring }}>{`${sliderUpper}s`}</S.Label>
+          <S.Label style={{ x: '-25%', left: knobLowerXSpring }}>{`${sliderLower}s`}</S.Label>
+          <S.Label style={{ x: '-25%', left: knobUpperXSpring }}>{`${sliderUpper}s`}</S.Label>
 
           <S.Knob style={{ x: knobLowerXSpring, y: '-50%' }} />
           <S.Knob style={{ x: knobUpperXSpring, y: '-50%' }} />
