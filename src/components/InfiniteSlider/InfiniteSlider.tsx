@@ -163,7 +163,7 @@ export const InfiniteSlider = (props: Props) => {
     offsetX.set(newOffsetX);
     updateProgressRatio();
 
-    //Hanlde auto snap
+    //Hanldes auto snap
     if (snapTimeoutId.current) clearTimeout(snapTimeoutId.current);
     snapTimeoutId.current = setTimeout(performSnap, timeToSnap);
   };
@@ -196,7 +196,6 @@ export const InfiniteSlider = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //Custom render loop
   const stopAppFrame = () => {
     if (rafId.current) window.cancelAnimationFrame(rafId.current);
   };
@@ -256,7 +255,6 @@ export const InfiniteSlider = (props: Props) => {
       time,
     };
 
-    //Own updates
     handleLerp(updateInfo);
     updateIndex();
     scroll.current.update(updateInfo);
