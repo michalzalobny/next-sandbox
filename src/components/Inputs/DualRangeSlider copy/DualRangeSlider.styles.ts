@@ -37,7 +37,7 @@ export const InputsWrapper = styled.span`
 
     &::-webkit-slider-thumb {
       appearance: none;
-      box-shadow: 0 0 20px rgba(255, 20, 20, 0.8);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       height: 20px;
       width: 20px;
       border-radius: 50%;
