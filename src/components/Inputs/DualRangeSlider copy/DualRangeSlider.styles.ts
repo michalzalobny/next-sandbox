@@ -61,7 +61,7 @@ export const InputsWrapper = styled.span`
     border-radius: 0px;
     border: 0px solid black;
 
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 
   input[type='range']::-webkit-slider-thumb {
@@ -81,7 +81,7 @@ export const InputsWrapper = styled.span`
   input[type='range']:focus::-webkit-slider-runnable-track {
     background: #424242;
 
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 
   input[type='range']::-moz-range-track {
@@ -93,7 +93,7 @@ export const InputsWrapper = styled.span`
     border-radius: 0px;
     border: 0px solid black;
 
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 
   input[type='range']::-moz-range-thumb {
@@ -117,7 +117,7 @@ export const InputsWrapper = styled.span`
     border-width: ${thumbSize}px 0;
     color: transparent;
 
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 
   input[type='range']::-ms-fill-lower {
