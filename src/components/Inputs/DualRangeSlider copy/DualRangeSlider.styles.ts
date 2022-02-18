@@ -41,7 +41,7 @@ export const InputsWrapper = styled.span`
       pointer-events: all;
     }
 
-    &:nth-child(1) {
+    /* &:nth-child(1) {
       &::-webkit-slider-thumb {
         transform: translateX(-50%);
       }
@@ -51,6 +51,6 @@ export const InputsWrapper = styled.span`
       &::-webkit-slider-thumb {
         transform: translateX(50%);
       }
-    }
+    } */
   }
 `;
