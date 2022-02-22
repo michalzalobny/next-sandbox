@@ -18,6 +18,7 @@ export const Dropdown = () => {
         </S.ButtonWrapper>
 
         <ExpandWrapper isExpanded={isExpanded}>
+          <S.Spacer />
           <S.Content>Dropdown content</S.Content>
         </ExpandWrapper>
       </S.Wrapper>

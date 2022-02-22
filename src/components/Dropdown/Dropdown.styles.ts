@@ -19,8 +19,11 @@ export const DropButton = styled.span`
   ${squareButton};
 `;
 
+export const Spacer = styled.div`
+  height: ${sharedValues.spacing.s1};
+`;
+
 export const Content = styled.div`
-  margin-top: ${sharedValues.spacing.s1};
   width: 100%;
   background-color: ${sharedValues.colors.lightGray};
   ${s1};

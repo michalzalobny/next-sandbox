@@ -2,8 +2,14 @@ import { Transition } from 'framer-motion';
 
 export const tween: Transition = {
   type: 'tween',
-  ease: 'easeInOut',
+  ease: [0.64, 0.02, 0.16, 0.97],
   duration: 0.4,
+};
+
+export const tween2: Transition = {
+  type: 'tween',
+  ease: [0.64, 0.02, 0.16, 0.97],
+  duration: 0.8,
 };
 
 export const springSlow: Transition = {

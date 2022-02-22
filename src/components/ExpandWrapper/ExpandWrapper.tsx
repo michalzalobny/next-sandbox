@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Variants } from 'framer-motion';
 
 import { useElementSize } from 'hooks/useElementSize';
+import { tween2 } from 'components/Animations/framerTransitions';
 
 import * as S from './ExpandWrapper.styles';
 
@@ -8,6 +10,21 @@ interface Props {
   children: React.ReactNode;
   isExpanded: boolean;
 }
+
+const contentWrapperV: Variants = {
+  initial: {
+    height: 0,
+    overflow: 'hidden',
+  },
+  animate: (height: number) => {
+    return {
+      height: height,
+      transitionEnd: {
+        overflow: 'initial',
+      },
+    };
+  },
+};
 
 export const ExpandWrapper = (props: Props) => {
   const { isExpanded, children } = props;
@@ -30,7 +47,15 @@ export const ExpandWrapper = (props: Props) => {
     <>
       <S.Wrapper>
         <S.GhostWrapper ref={ghostRef}>{children}</S.GhostWrapper>
-        <S.ContentWrapper style={{ height: expandHeight }}>{children}</S.ContentWrapper>
+        <S.ContentWrapper
+          initial="initial"
+          animate={isExpanded && expandHeight !== 0 ? 'animate' : 'initial'}
+          variants={contentWrapperV}
+          custom={expandHeight}
+          transition={tween2}
+        >
+          {children}
+        </S.ContentWrapper>
       </S.Wrapper>
     </>
   );
