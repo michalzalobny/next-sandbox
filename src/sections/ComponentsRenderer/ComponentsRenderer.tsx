@@ -5,6 +5,7 @@ import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
 import { TestimonialsSlider } from 'sections/TestimonialsSlider/TestimonialsSlider';
 import { RangeSliderShowcase } from 'sections/RangeSliderShowcase/RangeSliderShowcase';
+import { SelectShowcase } from 'sections/SelectShowcase/SelectShowcase';
 
 import * as S from './ComponentsRenderer.styles';
 
@@ -38,6 +39,13 @@ export const ComponentsRenderer = () => {
           title="4. Dropdown"
         >
           <Dropdown />
+        </ShowcaseItemRenderer>
+
+        <ShowcaseItemRenderer
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
+          title="5. Multi select"
+        >
+          <SelectShowcase />
         </ShowcaseItemRenderer>
       </S.Wrapper>
     </>
