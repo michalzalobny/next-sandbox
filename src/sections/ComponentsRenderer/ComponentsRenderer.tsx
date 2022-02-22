@@ -4,7 +4,7 @@ import { DetailsCarousel } from 'sections/DetailsCarousel/DetailsCarousel';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 import { ShowcaseItemRenderer } from 'components/ShowcaseItemRenderer/ShowcaseItemRenderer';
 import { TestimonialsSlider } from 'sections/TestimonialsSlider/TestimonialsSlider';
-import { InputsShowcase } from 'sections/InputsShowcase/InputsShowcase';
+import { RangeSliderShowcase } from 'sections/RangeSliderShowcase/RangeSliderShowcase';
 
 import * as S from './ComponentsRenderer.styles';
 
@@ -30,7 +30,7 @@ export const ComponentsRenderer = () => {
           sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Inputs/DualRangeSlider/DualRangeSlider.tsx"
           title="3. Range slider"
         >
-          <InputsShowcase />
+          <RangeSliderShowcase />
         </ShowcaseItemRenderer>
 
         <ShowcaseItemRenderer

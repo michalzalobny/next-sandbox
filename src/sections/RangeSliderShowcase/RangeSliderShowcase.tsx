@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { DualRangeSlider } from 'components/Inputs/DualRangeSlider/DualRangeSlider';
 
-import * as S from './InputsShowcase.styles';
+import * as S from './RangeSliderShowcase.styles';
 
-export const InputsShowcase = () => {
+export const RangeSliderShowcase = () => {
   const minValue = 1800;
   const maxValue = 2022;
 
