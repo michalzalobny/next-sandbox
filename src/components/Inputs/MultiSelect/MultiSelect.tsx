@@ -1,46 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { ExpandWrapper } from 'components/ExpandWrapper/ExpandWrapper';
 
 import * as S from './MultiSelect.styles';
 
+export interface MultiStateItem {
+  uid: string;
+  label: string;
+  isChecked: boolean;
+}
+
 interface Props {
-  entries: string[];
+  multiState: MultiStateItem[];
+  setMultiState: React.Dispatch<React.SetStateAction<MultiStateItem[]>>;
+  isExpanded: boolean;
+  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const MultiSelect = (props: Props) => {
-  const { entries } = props;
+  const { setIsExpanded, setMultiState, isExpanded, multiState } = props;
 
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isExpanded2, setIsExpanded2] = useState(false);
+  useEffect(() => {
+    console.log(multiState);
+  }, [multiState]);
 
   return (
     <>
       <S.Wrapper>
-        <h1 onClick={() => setIsExpanded(prev => !prev)} style={{ fontSize: 20 }}>
-          OPEN
-        </h1>
         <S.ExpandContainer>
-          <ExpandWrapper isExpanded={isExpanded}>
-            <h1>dasd</h1>
-            <h1 style={{ fontSize: 40 }}>dasdas</h1>
-            <S.InsideContainer>
-              <div onClick={() => setIsExpanded2(prev => !prev)} style={{ fontSize: 18 }}>
-                ABSOLUTE item wrapper{' '}
-              </div>
-              <S.InsideExpandWrapper>
-                <ExpandWrapper isExpanded={isExpanded2}>
-                  <div
-                    style={{
-                      height: 50,
-                      width: 50,
-                      background: 'blue',
-                    }}
-                  />
-                </ExpandWrapper>
-              </S.InsideExpandWrapper>
-            </S.InsideContainer>
-          </ExpandWrapper>
+          <ExpandWrapper isExpanded={isExpanded}>h1</ExpandWrapper>
         </S.ExpandContainer>
       </S.Wrapper>
     </>

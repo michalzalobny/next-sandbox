@@ -9,14 +9,3 @@ export const Wrapper = styled.div`
 export const ExpandContainer = styled.div`
   background: green;
 `;
-
-export const InsideContainer = styled.div`
-  position: relative;
-  background: yellow;
-`;
-
-export const InsideExpandWrapper = styled.div`
-  position: absolute;
-
-  top: 0;
-`;
