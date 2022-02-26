@@ -7,6 +7,7 @@ export interface Props {
   label: string;
   isChecked: boolean;
   onClick: () => void;
+  tabIndex: number;
 }
 
 export const SelectItem = (props: Props) => {
