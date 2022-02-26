@@ -33,19 +33,19 @@ const emptySize: Size = {
 export const useElementSize = (elRef: ElRef) => {
   const [size, setSize] = useState<Size>(emptySize);
 
+  const onResize = React.useCallback(() => {
+    if (!elRef.current) return;
+    const rect = elRef.current.getBoundingClientRect();
+
+    return setSize({
+      clientRect: rect,
+      isReady: true,
+      offsetTop: elRef.current.offsetTop, //Retruns offset to relative element (not to the whole page)
+      offsetLeft: elRef.current.offsetLeft,
+    });
+  }, [elRef]);
+
   useEffect(() => {
-    const onResize = () => {
-      if (!elRef.current) return;
-      const rect = elRef.current.getBoundingClientRect();
-
-      return setSize({
-        clientRect: rect,
-        isReady: true,
-        offsetTop: elRef.current.offsetTop, //Retruns offset to relative element (not to the whole page)
-        offsetLeft: elRef.current.offsetLeft,
-      });
-    };
-
     const onResizeDebounced = debounce(onResize, 100);
 
     window.addEventListener('resize', onResizeDebounced);
@@ -54,9 +54,10 @@ export const useElementSize = (elRef: ElRef) => {
     return () => {
       window.removeEventListener('resize', onResizeDebounced);
     };
-  }, [elRef]);
+  }, [onResize]);
 
   return {
     size,
+    onResize,
   };
 };

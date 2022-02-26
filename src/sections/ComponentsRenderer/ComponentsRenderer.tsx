@@ -36,17 +36,17 @@ export const ComponentsRenderer = () => {
 
         <ShowcaseItemRenderer
           sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
-          title="4. Dropdown"
+          title="4. Multi select"
+        >
+          <SelectShowcase />
+        </ShowcaseItemRenderer>
+
+        <ShowcaseItemRenderer
+          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
+          title="5. Dropdown"
         >
           <Dropdown />
         </ShowcaseItemRenderer>
-
-        {/* <ShowcaseItemRenderer
-          sourceHref="https://github.com/javusScriptus/next-sandbox/blob/main/src/components/Dropdown/Dropdown.tsx"
-          title="5. Multi select"
-        >
-          <SelectShowcase />
-        </ShowcaseItemRenderer> */}
       </S.Wrapper>
     </>
   );

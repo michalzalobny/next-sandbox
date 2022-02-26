@@ -33,6 +33,14 @@ export const ExpandWrapper = (props: Props) => {
 
   const [expandHeight, setExpandHeight] = useState(0);
 
+  //recalulate sizes if the children changes
+  useEffect(() => {
+    ghostSize.onResize();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children]);
+
   useEffect(() => {
     if (!ghostRef.current || !ghostSize.size.isReady) return;
 

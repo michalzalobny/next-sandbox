@@ -14,6 +14,8 @@ export const SelectShowcase = () => {
       { label: 'USA', uid: 'usa', isChecked: false },
       { label: 'Belgium', uid: 'belgium', isChecked: false },
       { label: 'China', uid: 'china', isChecked: false },
+      { label: 'Russia', uid: 'ru', isChecked: false },
+      { label: 'Poland', uid: 'pl', isChecked: false },
     ];
     setMultiState(data);
   }, []);
