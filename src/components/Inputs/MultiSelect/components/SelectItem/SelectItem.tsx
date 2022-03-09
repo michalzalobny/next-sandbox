@@ -8,15 +8,16 @@ export interface Props {
   isChecked: boolean;
   onClick: () => void;
   tabIndex: number;
+  addBorder: boolean;
 }
 
 export const SelectItem = (props: Props) => {
-  const { isChecked, label, ...rest } = props;
+  const { addBorder, isChecked, label, ...rest } = props;
 
   return (
     <>
       <S.Wrapper {...rest}>
-        <S.ContentWrapper>
+        <S.ContentWrapper addBorder={addBorder}>
           <S.BoxWrapper>
             <S.TickWrapper>
               <S.TickSvg

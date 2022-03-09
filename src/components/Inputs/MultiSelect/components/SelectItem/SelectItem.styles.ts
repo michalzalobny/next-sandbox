@@ -26,11 +26,19 @@ export const TickSvg = styled(Tick)`
   width: 100%;
 `;
 
-export const ContentWrapper = styled.div`
+interface ContentWrapperProps {
+  addBorder: boolean;
+}
+
+export const ContentWrapper = styled.div<ContentWrapperProps>`
   display: flex;
   align-items: center;
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  ${props =>
+    props.addBorder &&
+    css`
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    `}
 `;
 
 export const BoxWrapper = styled.div`

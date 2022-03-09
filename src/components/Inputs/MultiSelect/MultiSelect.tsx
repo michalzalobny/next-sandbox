@@ -73,9 +73,10 @@ export const MultiSelect = (props: Props) => {
         <S.ExpandContainer>
           <ExpandWrapper isExpanded={isExpanded}>
             <S.ItemsWrapper>
-              {multiState.map(item => {
+              {multiState.map((item, key) => {
                 return (
                   <S.SelectItemComp
+                    addBorder={key !== multiState.length - 1}
                     tabIndex={isExpanded ? 0 : -1}
                     onClick={() => handleItemClick(item.uid)}
                     isChecked={item.isChecked}
