@@ -39,7 +39,7 @@ export const InfiniteSlider = (props: Props) => {
   const TWEEN_GROUP_SEEK = useRef(new TWEEN.Group());
   const rafId = useRef<number | null>(null);
   const lastFrameTime = useRef<number | null>(null);
-  const isResumed = useRef(true);
+  const isResumed = useRef(false);
   const scroll = useRef(new Scroll());
   const contentWidthRef = useRef(1);
   const activeIndex = useRef({ last: 0, current: 0 });
@@ -197,7 +197,10 @@ export const InfiniteSlider = (props: Props) => {
   }, []);
 
   const stopAppFrame = () => {
-    if (rafId.current) window.cancelAnimationFrame(rafId.current);
+    if (rafId.current) {
+      window.cancelAnimationFrame(rafId.current);
+      rafId.current = null;
+    }
   };
 
   const handleLerp = (updateInfo: UpdateInfo) => {
@@ -261,12 +264,16 @@ export const InfiniteSlider = (props: Props) => {
   };
 
   const resumeAppFrame = () => {
-    rafId.current = window.requestAnimationFrame(renderOnFrame);
     isResumed.current = true;
+    if (!rafId.current) {
+      rafId.current = window.requestAnimationFrame(renderOnFrame);
+    }
   };
 
   const onVisibilityChange = () => {
-    if (document.hidden) return stopAppFrame();
+    if (document.hidden) {
+      return stopAppFrame();
+    }
     return resumeAppFrame();
   };
 
