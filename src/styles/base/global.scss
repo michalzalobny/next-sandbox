@@ -35,10 +35,6 @@ html {
 //   }
 // }
 
-body {
-  overflow-y: scroll;
-}
-
 a {
   color: inherit;
   pointer-events: auto;
@@ -76,23 +72,28 @@ svg {
 
 //Creative
 
-body {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 99.9%;
-}
+// body {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 99.9%;
+// }
 
-html {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overscroll-behavior: none;
-}
+// html {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   overflow: hidden;
+//   overscroll-behavior: none;
+// }
+
+// should be skipped if we use custom javascript scroll
+// body {
+//   overflow-y: scroll;
+// }
 
 // img {
 //   user-select: none;
