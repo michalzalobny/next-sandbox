@@ -11,7 +11,7 @@ export default function IndexPage() {
   return (
     <>
       <Head />
-      <S.Wrapper>
+      {/* <S.Wrapper>
         <MainHeader />
         <ComponentsRenderer />
       </S.Wrapper>
@@ -19,7 +19,7 @@ export default function IndexPage() {
         <a style={{ opacity: 0, position: 'fixed', bottom: 0, left: 0, fontSize: '14px' }}>
           Go to test
         </a>
-      </Link>
+      </Link> */}
     </>
   );
 }
