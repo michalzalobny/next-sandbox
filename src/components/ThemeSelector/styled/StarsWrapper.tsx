@@ -16,6 +16,6 @@ StarsWrapper.defaultProps = {
   },
 
   transition: {
-    staggerChildren: 0.02,
+    staggerChildren: 0.05,
   },
 };
