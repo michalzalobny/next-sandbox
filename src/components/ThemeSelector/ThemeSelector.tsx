@@ -77,8 +77,8 @@ export const ThemeSelector = memo<ThemeSelectorProps>(props => {
           delay={0.6}
           size={pixelRatio * 30}
           height={pixelRatio * 1}
-          posX={pixelRatio * 0}
-          posY={pixelRatio * 0}
+          posX={pixelRatio * 2}
+          posY={pixelRatio * -1}
         />
         <ShootingStar
           delay={1.6}
