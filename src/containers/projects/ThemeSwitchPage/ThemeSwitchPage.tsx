@@ -10,7 +10,6 @@ export default function IndexPage() {
   return (
     <>
       <Head />
-
       <S.Wrapper>
         <ThemeSelector />
       </S.Wrapper>

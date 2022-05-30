@@ -1,3 +1,5 @@
+import { HeadProps } from 'seo/Head/Head';
+
 export interface Size {
   clientRect: DomRectSSR;
   offsetTop: number;
@@ -26,4 +28,11 @@ export interface AnimateProps {
   delay?: number;
   destination: number;
   easing?: (amount: number) => number;
+}
+
+export interface PageProps {
+  head: HeadProps;
+  inspirationName?: string;
+  inspirationHref?: string;
+  repoHref?: string;
 }

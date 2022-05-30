@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import FontFaceObserver from 'fontfaceobserver';
 import { GlobalStyles } from 'utils/GlobalStyles';
 
+import { PageProps } from 'utils/sharedTypes';
 import { Layout } from 'components/Layout/Layout';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -35,7 +36,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyles />
-      <Layout isReady={isReady}>
+      <Layout
+        inspirationHref={(pageProps as PageProps).inspirationHref}
+        inspirationName={(pageProps as PageProps).inspirationName}
+        repoHref={(pageProps as PageProps).repoHref}
+        isReady={isReady}
+      >
         <Component
           key={`${router.route}${router.locale === undefined ? '' : router.locale}`}
           router={router}

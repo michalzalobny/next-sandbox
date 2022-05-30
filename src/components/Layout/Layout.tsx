@@ -7,10 +7,13 @@ import * as S from './Layout.styles';
 interface Props {
   isReady: boolean;
   children: React.ReactChild;
+  repoHref?: string;
+  inspirationName?: string;
+  inspirationHref?: string;
 }
 
 export const Layout = (props: Props) => {
-  const { children, isReady } = props;
+  const { inspirationHref, inspirationName, repoHref, children, isReady } = props;
 
   useEffect(() => {
     if (isReady && !document.body.classList.contains('isReady')) {
@@ -25,7 +28,11 @@ export const Layout = (props: Props) => {
   return (
     <>
       <S.ReadyWrapper isReady={isReady}></S.ReadyWrapper>
-      <CopyInfo />
+      <CopyInfo
+        repoHref={repoHref}
+        inspirationHref={inspirationHref}
+        inspirationName={inspirationName}
+      />
       {children}
     </>
   );
