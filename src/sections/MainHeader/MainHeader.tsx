@@ -12,8 +12,8 @@ export const MainHeader = () => {
           NextJS <span>Sandbox</span>
         </S.Title>
         <S.AuthorWrapper>
-          <LinkHandler isExternal elHref="https://github.com/javusScriptus">
-            <S.GithubLink>javusScriptus</S.GithubLink>
+          <LinkHandler isExternal elHref="https://github.com/michalzalobny">
+            <S.GithubLink>michalzalobny</S.GithubLink>
           </LinkHandler>
           <S.Separator />
           <LinkHandler isExternal elHref="https://creativeprojects.vercel.app/">
